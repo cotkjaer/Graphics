@@ -10,6 +10,18 @@
 		8FD873991C7608E900181FA6 /* Graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD873981C7608E900181FA6 /* Graphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FD873A01C7608EA00181FA6 /* Graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD873951C7608E900181FA6 /* Graphics.framework */; };
 		8FD873A51C7608EA00181FA6 /* GraphicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873A41C7608EA00181FA6 /* GraphicsTests.swift */; };
+		8FD873B81C76090300181FA6 /* CGAffineTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873AF1C76090300181FA6 /* CGAffineTransform.swift */; };
+		8FD873B91C76090300181FA6 /* CGContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B01C76090300181FA6 /* CGContext.swift */; };
+		8FD873BA1C76090300181FA6 /* CGPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B11C76090300181FA6 /* CGPath.swift */; };
+		8FD873BB1C76090300181FA6 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B21C76090300181FA6 /* CGPoint.swift */; };
+		8FD873BC1C76090300181FA6 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B31C76090300181FA6 /* CGRect.swift */; };
+		8FD873BD1C76090300181FA6 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B41C76090300181FA6 /* CGSize.swift */; };
+		8FD873BE1C76090300181FA6 /* CGVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B51C76090300181FA6 /* CGVector.swift */; };
+		8FD873BF1C76090300181FA6 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B61C76090300181FA6 /* Geometry.swift */; };
+		8FD873C01C76090300181FA6 /* CGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B71C76090300181FA6 /* CGColor.swift */; };
+		8FD873C21C76096E00181FA6 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873C11C76096E00181FA6 /* Connection.swift */; };
+		8FD874881C76192A00181FA6 /* Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD874871C76192A00181FA6 /* Scaling.swift */; };
+		8FD8754E1C76297D00181FA6 /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8754D1C76297D00181FA6 /* UIBezierPath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +41,18 @@
 		8FD8739F1C7608EA00181FA6 /* GraphicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GraphicsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD873A41C7608EA00181FA6 /* GraphicsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicsTests.swift; sourceTree = "<group>"; };
 		8FD873A61C7608EA00181FA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FD873AF1C76090300181FA6 /* CGAffineTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGAffineTransform.swift; sourceTree = "<group>"; };
+		8FD873B01C76090300181FA6 /* CGContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGContext.swift; sourceTree = "<group>"; };
+		8FD873B11C76090300181FA6 /* CGPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPath.swift; sourceTree = "<group>"; };
+		8FD873B21C76090300181FA6 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
+		8FD873B31C76090300181FA6 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		8FD873B41C76090300181FA6 /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
+		8FD873B51C76090300181FA6 /* CGVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGVector.swift; sourceTree = "<group>"; };
+		8FD873B61C76090300181FA6 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		8FD873B71C76090300181FA6 /* CGColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGColor.swift; sourceTree = "<group>"; };
+		8FD873C11C76096E00181FA6 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		8FD874871C76192A00181FA6 /* Scaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scaling.swift; sourceTree = "<group>"; };
+		8FD8754D1C76297D00181FA6 /* UIBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +95,20 @@
 		8FD873971C7608E900181FA6 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				8FD873AF1C76090300181FA6 /* CGAffineTransform.swift */,
+				8FD873B01C76090300181FA6 /* CGContext.swift */,
+				8FD873B11C76090300181FA6 /* CGPath.swift */,
+				8FD873B21C76090300181FA6 /* CGPoint.swift */,
+				8FD873B31C76090300181FA6 /* CGRect.swift */,
+				8FD873B41C76090300181FA6 /* CGSize.swift */,
+				8FD873B51C76090300181FA6 /* CGVector.swift */,
+				8FD873B61C76090300181FA6 /* Geometry.swift */,
+				8FD873B71C76090300181FA6 /* CGColor.swift */,
 				8FD873981C7608E900181FA6 /* Graphics.h */,
 				8FD8739A1C7608E900181FA6 /* Info.plist */,
+				8FD874871C76192A00181FA6 /* Scaling.swift */,
+				8FD873C11C76096E00181FA6 /* Connection.swift */,
+				8FD8754D1C76297D00181FA6 /* UIBezierPath.swift */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -194,6 +230,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD873BB1C76090300181FA6 /* CGPoint.swift in Sources */,
+				8FD873B81C76090300181FA6 /* CGAffineTransform.swift in Sources */,
+				8FD873BE1C76090300181FA6 /* CGVector.swift in Sources */,
+				8FD873C01C76090300181FA6 /* CGColor.swift in Sources */,
+				8FD873BC1C76090300181FA6 /* CGRect.swift in Sources */,
+				8FD873B91C76090300181FA6 /* CGContext.swift in Sources */,
+				8FD873BF1C76090300181FA6 /* Geometry.swift in Sources */,
+				8FD874881C76192A00181FA6 /* Scaling.swift in Sources */,
+				8FD873C21C76096E00181FA6 /* Connection.swift in Sources */,
+				8FD8754E1C76297D00181FA6 /* UIBezierPath.swift in Sources */,
+				8FD873BD1C76090300181FA6 /* CGSize.swift in Sources */,
+				8FD873BA1C76090300181FA6 /* CGPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +356,7 @@
 		8FD873AA1C7608EA00181FA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -318,12 +367,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.Graphics";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		8FD873AB1C7608EA00181FA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
