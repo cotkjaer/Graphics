@@ -6,6 +6,7 @@
 //  Copyright © 2016 Christian Otkjær. All rights reserved.
 //
 
+import Geometry
 
 public class ConnectionEndpoint
 {
@@ -127,11 +128,11 @@ public class Connection: CAShapeLayer
                 switch self
                 {
                 case .Up:
-                    return 3 * π / 2
+                    return 3 * CGFloat.π_2
                 case .Down:
-                    return π / 2
+                    return CGFloat.π_2
                 case .Left:
-                    return π
+                    return CGFloat.π
                 case .Right:
                     return 0
                 case .None:

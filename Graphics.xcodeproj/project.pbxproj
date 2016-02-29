@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F8D90E11C845B2B00142128 /* Arithmetic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F8D90DF1C845B2B00142128 /* Arithmetic.framework */; };
+		8F8D90E21C845B2B00142128 /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F8D90E01C845B2B00142128 /* Geometry.framework */; };
+		8F8D90E31C845FB800142128 /* Arithmetic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F8D90DF1C845B2B00142128 /* Arithmetic.framework */; };
+		8F8D90E41C845FB800142128 /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F8D90E01C845B2B00142128 /* Geometry.framework */; };
+		8F91BA361C84449D004CBDB9 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 8F91BA351C84449D004CBDB9 /* Cartfile */; };
+		8F91BA3A1C844E82004CBDB9 /* Arithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F91BA391C844E82004CBDB9 /* Arithmetic.swift */; };
+		8F91BA3C1C844EE7004CBDB9 /* CoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F91BA3B1C844EE7004CBDB9 /* CoreGraphics.swift */; };
+		8F91BA3E1C845011004CBDB9 /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F91BA3D1C845011004CBDB9 /* GeometryTests.swift */; };
 		8FD873991C7608E900181FA6 /* Graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD873981C7608E900181FA6 /* Graphics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FD873A01C7608EA00181FA6 /* Graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD873951C7608E900181FA6 /* Graphics.framework */; };
 		8FD873A51C7608EA00181FA6 /* GraphicsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873A41C7608EA00181FA6 /* GraphicsTests.swift */; };
@@ -17,7 +25,6 @@
 		8FD873BC1C76090300181FA6 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B31C76090300181FA6 /* CGRect.swift */; };
 		8FD873BD1C76090300181FA6 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B41C76090300181FA6 /* CGSize.swift */; };
 		8FD873BE1C76090300181FA6 /* CGVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B51C76090300181FA6 /* CGVector.swift */; };
-		8FD873BF1C76090300181FA6 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B61C76090300181FA6 /* Geometry.swift */; };
 		8FD873C01C76090300181FA6 /* CGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B71C76090300181FA6 /* CGColor.swift */; };
 		8FD873C21C76096E00181FA6 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873C11C76096E00181FA6 /* Connection.swift */; };
 		8FD874881C76192A00181FA6 /* Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD874871C76192A00181FA6 /* Scaling.swift */; };
@@ -35,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F8D90DF1C845B2B00142128 /* Arithmetic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Arithmetic.framework; path = Carthage/Build/iOS/Arithmetic.framework; sourceTree = "<group>"; };
+		8F8D90E01C845B2B00142128 /* Geometry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Geometry.framework; path = Carthage/Build/iOS/Geometry.framework; sourceTree = "<group>"; };
+		8F91BA351C84449D004CBDB9 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		8F91BA391C844E82004CBDB9 /* Arithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arithmetic.swift; sourceTree = "<group>"; };
+		8F91BA3B1C844EE7004CBDB9 /* CoreGraphics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreGraphics.swift; sourceTree = "<group>"; };
+		8F91BA3D1C845011004CBDB9 /* GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
 		8FD873951C7608E900181FA6 /* Graphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Graphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD873981C7608E900181FA6 /* Graphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Graphics.h; sourceTree = "<group>"; };
 		8FD8739A1C7608E900181FA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,7 +61,6 @@
 		8FD873B31C76090300181FA6 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
 		8FD873B41C76090300181FA6 /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
 		8FD873B51C76090300181FA6 /* CGVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGVector.swift; sourceTree = "<group>"; };
-		8FD873B61C76090300181FA6 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		8FD873B71C76090300181FA6 /* CGColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGColor.swift; sourceTree = "<group>"; };
 		8FD873C11C76096E00181FA6 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		8FD874871C76192A00181FA6 /* Scaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scaling.swift; sourceTree = "<group>"; };
@@ -60,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F8D90E11C845B2B00142128 /* Arithmetic.framework in Frameworks */,
+				8F8D90E21C845B2B00142128 /* Geometry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,15 +82,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD873A01C7608EA00181FA6 /* Graphics.framework in Frameworks */,
+				8F8D90E31C845FB800142128 /* Arithmetic.framework in Frameworks */,
+				8F8D90E41C845FB800142128 /* Geometry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F8D90E51C8460D200142128 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8FD873981C7608E900181FA6 /* Graphics.h */,
+				8FD8739A1C7608E900181FA6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		8FD8738B1C7608E900181FA6 = {
 			isa = PBXGroup;
 			children = (
+				8F8D90DF1C845B2B00142128 /* Arithmetic.framework */,
+				8F8D90E01C845B2B00142128 /* Geometry.framework */,
+				8F91BA351C84449D004CBDB9 /* Cartfile */,
 				8FD873971C7608E900181FA6 /* Graphics */,
 				8FD873A31C7608EA00181FA6 /* GraphicsTests */,
 				8FD873961C7608E900181FA6 /* Products */,
@@ -95,6 +123,8 @@
 		8FD873971C7608E900181FA6 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				8F91BA391C844E82004CBDB9 /* Arithmetic.swift */,
+				8F91BA3B1C844EE7004CBDB9 /* CoreGraphics.swift */,
 				8FD873AF1C76090300181FA6 /* CGAffineTransform.swift */,
 				8FD873B01C76090300181FA6 /* CGContext.swift */,
 				8FD873B11C76090300181FA6 /* CGPath.swift */,
@@ -102,10 +132,8 @@
 				8FD873B31C76090300181FA6 /* CGRect.swift */,
 				8FD873B41C76090300181FA6 /* CGSize.swift */,
 				8FD873B51C76090300181FA6 /* CGVector.swift */,
-				8FD873B61C76090300181FA6 /* Geometry.swift */,
 				8FD873B71C76090300181FA6 /* CGColor.swift */,
-				8FD873981C7608E900181FA6 /* Graphics.h */,
-				8FD8739A1C7608E900181FA6 /* Info.plist */,
+				8F8D90E51C8460D200142128 /* Supporting Files */,
 				8FD874871C76192A00181FA6 /* Scaling.swift */,
 				8FD873C11C76096E00181FA6 /* Connection.swift */,
 				8FD8754D1C76297D00181FA6 /* UIBezierPath.swift */,
@@ -116,6 +144,7 @@
 		8FD873A31C7608EA00181FA6 /* GraphicsTests */ = {
 			isa = PBXGroup;
 			children = (
+				8F91BA3D1C845011004CBDB9 /* GeometryTests.swift */,
 				8FD873A41C7608EA00181FA6 /* GraphicsTests.swift */,
 				8FD873A61C7608EA00181FA6 /* Info.plist */,
 			);
@@ -213,6 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F91BA361C84449D004CBDB9 /* Cartfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,17 +261,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD873BB1C76090300181FA6 /* CGPoint.swift in Sources */,
+				8F91BA3A1C844E82004CBDB9 /* Arithmetic.swift in Sources */,
 				8FD873B81C76090300181FA6 /* CGAffineTransform.swift in Sources */,
 				8FD873BE1C76090300181FA6 /* CGVector.swift in Sources */,
 				8FD873C01C76090300181FA6 /* CGColor.swift in Sources */,
 				8FD873BC1C76090300181FA6 /* CGRect.swift in Sources */,
 				8FD873B91C76090300181FA6 /* CGContext.swift in Sources */,
-				8FD873BF1C76090300181FA6 /* Geometry.swift in Sources */,
 				8FD874881C76192A00181FA6 /* Scaling.swift in Sources */,
 				8FD873C21C76096E00181FA6 /* Connection.swift in Sources */,
 				8FD8754E1C76297D00181FA6 /* UIBezierPath.swift in Sources */,
 				8FD873BD1C76090300181FA6 /* CGSize.swift in Sources */,
 				8FD873BA1C76090300181FA6 /* CGPath.swift in Sources */,
+				8F91BA3C1C844EE7004CBDB9 /* CoreGraphics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FD873A51C7608EA00181FA6 /* GraphicsTests.swift in Sources */,
+				8F91BA3E1C845011004CBDB9 /* GeometryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +393,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Graphics/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -379,6 +415,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Graphics/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -391,8 +431,12 @@
 		8FD873AD1C7608EA00181FA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GraphicsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.GraphicsTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -401,8 +445,12 @@
 		8FD873AE1C7608EA00181FA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GraphicsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.GraphicsTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -427,6 +475,7 @@
 				8FD873AB1C7608EA00181FA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8FD873AC1C7608EA00181FA6 /* Build configuration list for PBXNativeTarget "GraphicsTests" */ = {
 			isa = XCConfigurationList;
@@ -435,6 +484,7 @@
 				8FD873AE1C7608EA00181FA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

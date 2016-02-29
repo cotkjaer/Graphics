@@ -1,13 +1,13 @@
 //
 //  CGVector.swift
-//  SilverbackFramework
+//  Math
 //
 //  Created by Christian Otkjær on 20/04/15.
 //  Copyright (c) 2015 Christian Otkjær. All rights reserved.
 //
 
 import CoreGraphics
-
+import Geometry
 
 // MARK: - CGVector
 
@@ -38,6 +38,71 @@ extension CGVector
     }
 }
 
+public extension CGVector
+{
+    init(magnitude: CGFloat, direction: CGFloat)
+    {
+        dx = cos(direction) * magnitude
+        dy = sin(direction) * magnitude
+    }
+    
+    var magnitude: CGFloat
+        {
+        get
+        {
+            return sqrt(magnitudeSquared)
+        }
+        set
+        {
+            self = CGVector(magnitude: newValue, direction: direction)
+        }
+    }
+    
+    var magnitudeSquared: CGFloat { return dx * dx + dy * dy }
+    
+    var direction: CGFloat
+        {
+        get
+        {
+            return atan2(self)
+        }
+        set
+        {
+            self = CGVector(magnitude: magnitude, direction: newValue)
+        }
+    }
+    
+    public func with(magnitude magnitude: CGFloat) -> CGVector
+    {
+        return CGVector(magnitude: magnitude, direction: direction)
+    }
+    
+    public func with(direction direction: CGFloat) -> CGVector
+    {
+        return CGVector(magnitude: magnitude, direction: direction)
+    }
+    
+    var normalized: CGVector
+        {
+            let magnitude = self.magnitude
+            
+            if magnitude < CGFloat.epsilon
+            {
+                return self
+            }
+            else
+            {
+                return self / magnitude
+            }
+    }
+    
+    // MARK: - normalizing
+    
+    public mutating func normalize()
+    {
+        self = normalized
+    }
+}
 
 // MARK: rotation
 
@@ -46,22 +111,11 @@ public extension CGVector
     public func rotated(theta:CGFloat) -> CGVector
     {
         return with(direction: direction + theta)
-//        let sinTheta = sin(theta)
-//        let cosTheta = cos(theta)
-//        
-//        return CGVector(magnitude: magnitude, direction: direction + theta)
-//        dx = (dx * cosTheta - dy * sinTheta)
-//        dy = (dx * sinTheta + dy * cosTheta)
     }
     
     public mutating func rotate(theta: CGFloat)
     {
         self = rotated(theta)
-//        let sinTheta = sin(theta)
-//        let cosTheta = cos(theta)
-//        
-//        dx = (dx * cosTheta - dy * sinTheta)
-//        dy = (dx * sinTheta + dy * cosTheta)
     }
     
     /// 90 degrees counterclockwise rotation
@@ -137,6 +191,11 @@ public func + (vector: CGVector, size: CGSize) -> CGVector
     return CGVector(dx: vector.dx + size.width, dy: vector.dy + size.height)
 }
 
+public func + (vector: CGVector, point: CGPoint) -> CGVector
+{
+    return CGVector(dx: vector.dx + point.x, dy: vector.dy + point.y)
+}
+
 public func += (inout vector: CGVector, size: CGSize)
 {
     vector = vector + size
@@ -180,6 +239,7 @@ public func /= (inout vector: CGVector, factor: CGFloat)
 //MARK: - Draw
 
 import UIKit
+
 
 public extension CGVector
 {
@@ -235,7 +295,7 @@ public extension CGVector
         path.addLineToPoint(headStartPoint - p * headWidth)
         
         path.closePath()
-                
+        
         return path
     }
 }

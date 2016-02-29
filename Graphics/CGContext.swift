@@ -7,6 +7,7 @@
 //
 
 import CoreGraphics
+import Geometry
 
 // MARK: - Transformation
 
@@ -45,7 +46,6 @@ public extension CGContext
         translate(-point)
     }
 }
-
 
 public func CGContextRotateAroundPoint(context: CGContextRef,  point: CGPoint,  angle: CGFloat)
 {
