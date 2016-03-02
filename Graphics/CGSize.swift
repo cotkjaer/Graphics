@@ -45,12 +45,12 @@ extension CGSize
     
     // MARK: with
     
-    public func with(width  width: CGFloat) -> CGSize
+    public func with(width width: CGFloat) -> CGSize
     {
         return CGSize(width: width, height: height)
     }
     
-    public func with(height  height: CGFloat) -> CGSize
+    public func with(height height: CGFloat) -> CGSize
     {
         return CGSize(width: width, height: height)
     }
@@ -92,14 +92,11 @@ public func floor(size: CGSize) -> CGSize
 }
 
 
-// MARK: operators
+// MARK: - Operators
 
 // MARK: - Addable
 
-extension CGSize : Addable
-{
-    
-}
+extension CGSize : Addable {}
 
 prefix public func + (size: CGSize) -> CGSize
 {
