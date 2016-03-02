@@ -104,3 +104,11 @@ public func round(point: CGPoint, toDecimals: Int = 0) -> CGPoint
         return CGPoint(x: round(point.x * factor) / factor, y: round(point.y * factor) / factor)
     }
 }
+
+// MARK: - LERP
+
+/// Basic linear interpolation of two points
+public func ◊ (ab: (CGPoint, CGPoint), t: CGFloat) -> CGPoint
+{
+    return ab.0 * (1 - t) + ab.1 * t
+}

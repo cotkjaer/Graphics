@@ -91,7 +91,6 @@ public func floor(size: CGSize) -> CGSize
     return CGSize(width: floor(size.width), height: floor(size.height))
 }
 
-
 // MARK: - Operators
 
 // MARK: - Addable
@@ -162,3 +161,10 @@ public func *= (inout size: CGSize, transform: CGAffineTransform)
     size = size * transform
 }
 
+// MARK: - LERP
+
+/// Basic linear interpolation of two CGSize
+public func ◊ (ab: (CGSize, CGSize), t: CGFloat) -> CGSize
+{
+    return ab.0 * (1 - t) + ab.1 * t
+}

@@ -364,3 +364,10 @@ public func *= (inout rect: CGRect, transform: CGAffineTransform)
     rect = rect * transform
 }
 
+// MARK: - LERP
+
+/// Basic linear interpolation of two points
+public func ◊ (ab: (CGRect, CGRect), t: CGFloat) -> CGRect
+{
+    return CGRect(origin: (ab.0.origin, ab.1.origin) ◊ t, size: (ab.0.size, ab.1.size) ◊ t)
+}

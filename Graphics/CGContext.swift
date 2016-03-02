@@ -13,30 +13,36 @@ import Geometry
 
 public extension CGContext
 {
+    
+    // MARK: - Translate
+    
     func translate(tx tx: CGFloat, ty: CGFloat)
     {
         CGContextTranslateCTM(self, tx , ty)
     }
 
+    func translate(point: CGPoint)
+    {
+        translate(tx: point.x, ty: point.y)
+    }
+    
+    func translate(vector: CGVector)
+    {
+        translate(tx: vector.dx, ty: vector.dy)
+    }
+
+    // MARK: - Scale
+    
     func scale(sx sx: CGFloat, sy: CGFloat)
     {
         CGContextScaleCTM(self, sx, sy)
     }
     
+    // MARK: - Rotate
+    
     func rotate(angle: CGFloat)
     {
         CGContextRotateCTM(self, angle)
-    }
-
-    
-    func translate(point: CGPoint)
-    {
-        translate(tx: point.x, ty: point.y)
-    }
-
-    func translate(vector: CGVector)
-    {
-        translate(tx: vector.dx, ty: vector.dy)
     }
 
     func rotate(angle: CGFloat, aroundPoint point: CGPoint)
@@ -47,14 +53,3 @@ public extension CGContext
     }
 }
 
-public func CGContextRotateAroundPoint(context: CGContextRef,  point: CGPoint,  angle: CGFloat)
-{
-    CGContextTranslateCTM(context,  point.x , point.y)
-    CGContextRotateCTM(context, angle)
-    CGContextTranslateCTM(context, -point.x, -point.y)
-}
-
-public func CGContext(context: CGContextRef, rotate angle: CGFloat, aroundPoint point: CGPoint)
-{
-    CGContextRotateAroundPoint(context, point: point, angle: angle)
-}

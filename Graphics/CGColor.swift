@@ -69,6 +69,8 @@ public extension CGColor
 {
     var colorSpace: CGColorSpaceRef { return CGColorGetColorSpace(self)! }
     
+    public static let Black = UIColor.blackColor().CGColor
+    
     public class func blackColor() -> CGColor { return UIColor.blackColor().CGColor }
     public class func darkGrayColor() -> CGColor { return UIColor.darkGrayColor().CGColor }
     public class func lightGrayColor() -> CGColor { return UIColor.lightGrayColor().CGColor }

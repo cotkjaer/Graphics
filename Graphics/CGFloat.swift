@@ -12,7 +12,7 @@ extension CGFloat : FloatingPointArithmeticType {}
 
 // MARK: - Power
 
-public func ** (left: CGFloat, right: CGFloat) -> CGFloat { return left.pow(right) }
+//public func ** (left: CGFloat, right: CGFloat) -> CGFloat { return left.pow(right) }
 
 extension CGFloat : Powerable
 {

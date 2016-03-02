@@ -7,6 +7,7 @@
 //
 
 import CoreGraphics
+import Arithmetic
 import Geometry
 
 // MARK: - CGVector
@@ -300,3 +301,10 @@ public extension CGVector
     }
 }
 
+// MARK: - LERP
+
+/// Basic linear interpolation of two CGVector
+public func ◊ (ab: (CGVector, CGVector), t: CGFloat) -> CGVector
+{
+    return ab.0 * (1 - t) + ab.1 * t
+}
