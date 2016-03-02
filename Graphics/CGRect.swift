@@ -6,7 +6,9 @@
 // Copyright (c) 2015 Christian Otkjær. All rights reserved.
 //
 
-import CoreGraphics
+import UIKit
+
+import Arithmetic
 import Geometry
 
 // MARK: - CGRect
@@ -192,7 +194,15 @@ public extension CGRect
     }
 }
 
+//MARK: - Zero
+
+extension CGRect : Zeroable
+{
+    public static var zero : CGRect { return CGRectZero }
+}
+
 // MARK: - Edge points
+
 public extension CGRect
 {
     var topLeft: CGPoint
@@ -245,7 +255,7 @@ public extension CGRect
 }
 
 //MARK: - Convert
-import UIKit
+
 extension CGRect
 {
     public func convert(fromView fromView: UIView? = nil, toView: UIView) -> CGRect
@@ -286,21 +296,6 @@ public extension CGRect
         return left < rect.right
     }
 }
-
-//// MARK: Equatable
-//
-//extension CGRect: Equatable
-//{
-//  func isEqualTo(rect:CGRect) -> Bool
-//  {
-//    return CGRectEqualToRect(self, rect)
-//  }
-//}
-//
-//func == (r1: CGRect, r2: CGRect) -> Bool
-//{
-//  return CGRectEqualToRect(r1, r2)
-//}
 
 // MARK: Operators
 
@@ -366,6 +361,6 @@ public func * (rect: CGRect, transform: CGAffineTransform) -> CGRect
 
 public func *= (inout rect: CGRect, transform: CGAffineTransform)
 {
-    rect = rect * transform//CGRectApplyAffineTransform(rect, transform)
+    rect = rect * transform
 }
 

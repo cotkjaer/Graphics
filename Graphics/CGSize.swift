@@ -7,8 +7,33 @@
 //
 
 import CoreGraphics
+import Arithmetic
+import Geometry
 
-// MARK: - CGSize
+//extension CGSize : TwoDimensionalValue
+//{
+//    public typealias Scalar = CGFloat
+//    
+//    public subscript(index : Int) -> Scalar
+//        {
+//        get {
+//            switch index
+//            {
+//            case 0: return width
+//            case 1: return height
+//            default: fatalError("index out of bounds: \(index)")
+//            }
+//        }
+//        set {
+//            switch index
+//            {
+//            case 0: width = newValue
+//            case 1: height = newValue
+//            default: fatalError("index out of bounds: \(index)")
+//            }
+//        }
+//    }
+//}
 
 extension CGSize
 {
@@ -37,6 +62,12 @@ extension CGSize
     }
 }
 
+// MARK: - Zeroable
+
+extension CGSize : Zeroable
+{
+    public static var zero : CGSize { return CGSizeZero }
+}
 
 //MARK: - Width and Height
 
@@ -45,21 +76,6 @@ extension CGSize
     public var minWidthHeight : CGFloat { return min(width, height) }
     public var maxWidthHeight : CGFloat { return max(width, height) }
 }
-
-// MARK: Equatable
-//
-//extension CGSize//: Equatable
-//{
-//    public func isEqualTo(size:CGSize) -> Bool
-//    {
-//        return self == size
-//    }
-//}
-//
-//public func == (s1: CGSize, s2: CGSize) -> Bool
-//{
-//    return s1.width == s2.width && s1.height == s2.height
-//}
 
 // MARK: - ceil
 
@@ -77,6 +93,18 @@ public func floor(size: CGSize) -> CGSize
 
 
 // MARK: operators
+
+// MARK: - Addable
+
+extension CGSize : Addable
+{
+    
+}
+
+prefix public func + (size: CGSize) -> CGSize
+{
+    return size
+}
 
 public func + (s1: CGSize, s2: CGSize) -> CGSize
 {
@@ -134,6 +162,6 @@ public func * (size: CGSize, transform: CGAffineTransform) -> CGSize
 
 public func *= (inout size: CGSize, transform: CGAffineTransform)
 {
-    size = size * transform//CGSizeApplyAffineTransform(size, transform)
+    size = size * transform
 }
 
