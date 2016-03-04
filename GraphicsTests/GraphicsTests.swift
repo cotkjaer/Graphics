@@ -17,4 +17,12 @@ class GraphicsTests: XCTestCase
         
         XCTAssertEqual(f.pow(2), 9)
     }
+    
+    func test_plus_CGPoint_CGVector()
+    {
+        let p = CGPoint(x: 2, y: 4)
+        let v = CGVector(dx: 2, dy: 4)
+                
+        XCTAssertEqual(p + v, CGPoint(4, 8))
+    }
 }

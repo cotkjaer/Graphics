@@ -6,64 +6,184 @@
 //  Copyright (c) 2015 Christian Otkjær. All rights reserved.
 //
 
-import Geometry
 import Arithmetic
-
-extension CGPoint : Point2D
-{
-    public typealias Scalar = CGFloat
-}
 
 extension CGPoint : Zeroable
 {
     public static var zero : CGPoint { return CGPointZero }
 }
 
-extension CGPoint : Roundable
+// MARK: - TwoDimensional
+
+extension CGPoint : TwoDimensional
 {
-    /**
-     Round `self` to arbitrary whole multiplica of `point`
-     
-     - parameter number: the number to use in rounding
-     */
-    public func rounded(toNearest point: CGPoint) -> CGPoint
+    public init<S1 : CGFloatConvertible, S2 : CGFloatConvertible>(_ x: S1, _ y: S2)
     {
-        return CGPoint(x: x.rounded(toNearest: point.x), y: y.rounded(toNearest: point.y))
+        self.init(x: CGFloat(x), y: CGFloat(y))
     }
     
-    /// Largest integral value not greater than `self`
-    public var floor : CGPoint { return CGPoint(x: x.floor, y: y.floor) }
+    public subscript(index: Int) -> CGFloat
+        {
+        set
+        {
+            switch index
+            {
+            case 0:
+                x = newValue
+                
+            case 1:
+                y = newValue
+                
+            default:
+                debugPrint("index (\(index)) out of bounds for \(self.dynamicType)")
+            }
+        }
+        get
+        {
+            switch index
+            {
+            case 0:
+                return x
+                
+            case 1:
+                return y
+                
+            default:
+                debugPrint("index (\(index)) out of bounds for \(self.dynamicType)")
+                return 0
+            }
+        }
+    }
     
-    /// Smallest integral value not less than `self`
-    public var ceil : CGPoint { return CGPoint(x: x.ceil, y: y.ceil) }
-    
-    /// Nearest integral value, eaqual to, less than, or greater than `self`
-    public var round : CGPoint { return CGPoint(x: x.round, y: y.round) }
+    public var norm : CGFloat { return distance(to: CGPoint.zero) }
 }
 
-// MARK: Fuzzy
+// MARK: - Map
 
-extension CGPoint: FuzzyEquatable
+public extension CGPoint
 {
-    public func equalTo(other: CGPoint, within precision: CGPoint) -> Bool
+    // MARK: with
+    
+    func with<Scalar: CGFloatConvertible>(x x: Scalar) -> CGPoint
     {
-        return distance(other) <= precision.distance(CGPointZero)
+        return CGPoint(x, y)
+    }
+    
+    func with<Scalar: CGFloatConvertible>(y y: Scalar) -> CGPoint
+    {
+        return CGPoint(x, y)
     }
 }
 
-public func ≈≈ (lhs: CGPoint, rhs: CGPoint) -> Bool { return lhs.x ≈≈ rhs.x && lhs.y ≈≈ rhs.y }
+// MARK: - Angle
 
-// MARK: - Equatable
+public extension CGPoint
+{
+    public func angleToPoint(point: CGPoint) -> CGFloat
+    {
+        return atan2(point.y - y, point.x - x)
+    }
+}
+
+// MARK: - Rotation
+
+public extension CGPoint
+{
+    /// angle is in radians
+    public mutating func rotate(theta:CGFloat, around center:CGPoint)
+    {
+        let sinTheta = sin(theta)
+        let cosTheta = cos(theta)
+        
+        let transposedX = x - center.x
+        let transposedY = y - center.y
+        
+        let translatedX = (transposedX * cosTheta - transposedY * sinTheta)
+        let translatedY = (transposedX * sinTheta + transposedY * cosTheta)
+        
+        x = center.x + translatedX
+        y = center.y + translatedY
+    }
+    
+    public func rotated(theta:CGFloat, around center:CGPoint) -> CGPoint
+    {
+        return (self - center).rotated(theta) + center
+    }
+    
+    public func rotated(theta:CGFloat) -> CGPoint
+    {
+        let sinTheta = sin(theta)
+        let cosTheta = cos(theta)
+        
+        return CGPoint(x: x * cosTheta - y * sinTheta, y: x * sinTheta + y * cosTheta)
+    }
+}
+
+public func rotate(point p1:CGPoint, radians: CGFloat, around rhs:CGPoint) -> CGPoint
+{
+    var p = p1
+    
+    p.rotate(radians, around: rhs)
+    
+    return p
+}
+
+// MARK: - Translate
+
+extension CGPoint
+{
+    public mutating func translate<S1: CGFloatConvertible, S2: CGFloatConvertible>(dx: S1? = nil, dy: S2? = nil)
+    {
+        if let delta = dx
+        {
+            x += delta
+        }
+        
+        if let delta = dy
+        {
+            y += delta
+        }
+    }
+    
+    public func translated<S1: CGFloatConvertible, S2: CGFloatConvertible>(dx: S1? = nil, dy: S2? = nil) -> CGPoint
+    {
+        var p = CGPoint(x: x, y: y)
+        
+        p.translate(dx, dy: dy)
+        
+        return p
+    }
+}
+
+//// MARK: Fuzzy
+//
+//extension CGPoint: FuzzyEquatable
+//{
+//    public func equalTo(other: CGPoint, within precision: CGPoint) -> Bool
+//    {
+//        return distance(to:other) <= precision.distance(to: CGPoint.zero)
+//    }
+//}
+//
+//public func ≈≈ (lhs: CGPoint, rhs: CGPoint) -> Bool { return lhs.x ≈≈ rhs.x && lhs.y ≈≈ rhs.y }
+
+
+// MARK: - ApproximatelyEquatable
 
 extension CGPoint : ApproximatelyEquatable
 {
     public func isEqualTo(point: CGPoint, withPrecision precision:CGFloat = CGFloat.epsilon) -> Bool
     {
-        return  distance(point) < abs(precision)
+        return distance(to: point) < abs(precision)
     }
 }
 
-// MARK: - Operators
+public func isEqual(lhs: CGPoint, rhs: CGPoint, withPrecision precision:CGFloat) -> Bool
+{
+    return distance(lhs, rhs) < abs(precision)
+}
+
+// MARK: - Transform
 
 public func * (point: CGPoint, transform: CGAffineTransform) -> CGPoint
 {
@@ -75,40 +195,29 @@ public func *= (inout point: CGPoint, transform: CGAffineTransform)
     point = point * transform
 }
 
-//MARK: - Vector
+// MARK: - Distance
 
-public func + (point: CGPoint, vector: CGVector) -> CGPoint
+extension CGPoint
 {
-    return CGPoint(x: vector.dx + point.x, y: vector.dy + point.y)
-}
-
-public func - (point: CGPoint, vector: CGVector) -> CGPoint
-{
-    return CGPoint(x: vector.dx - point.x, y: vector.dy - point.y)
-}
-
-//MARK: - Round
-
-public func round(point: CGPoint, toDecimals: Int = 0) -> CGPoint
-{
-    let decimals = max(0, toDecimals)
+    // MARK: distance
     
-    if decimals == 0
+    func distance(to point: CGPoint) -> CGFloat
     {
-        return CGPoint(x: round(point.x), y: round(point.y))
+        return CoreGraphics.sqrt(distanceSquared(to: point))
     }
-    else
+    
+    func distanceSquared(to point: CGPoint) -> CGFloat
     {
-        let factor = pow(10, CGFloat(max(decimals, 0)))
-        
-        return CGPoint(x: round(point.x * factor) / factor, y: round(point.y * factor) / factor)
+        return pow(x - point.x, 2) + pow(y - point.y, 2)
     }
 }
 
-// MARK: - LERP
-
-/// Basic linear interpolation of two points
-public func ◊ (ab: (CGPoint, CGPoint), t: CGFloat) -> CGPoint
+public func distance(lhs: CGPoint, _ rhs: CGPoint) -> CGFloat
 {
-    return ab.0 * (1 - t) + ab.1 * t
+    return sqrt(distanceSquared(lhs, rhs))
+}
+
+public func distanceSquared(lhs: CGPoint, _ rhs: CGPoint) -> CGFloat
+{
+    return pow(lhs.x - rhs.x, 2) + pow(lhs.y - rhs.y, 2)
 }

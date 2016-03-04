@@ -9,7 +9,6 @@
 import UIKit
 
 import Arithmetic
-import Geometry
 
 // MARK: - CGRect
 

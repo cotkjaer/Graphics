@@ -7,13 +7,11 @@
 //
 
 import CoreGraphics
-import Geometry
 
 // MARK: - Transformation
 
 public extension CGContext
 {
-    
     // MARK: - Translate
     
     func translate(tx tx: CGFloat, ty: CGFloat)

@@ -8,11 +8,55 @@
 
 import CoreGraphics
 import Arithmetic
-import Geometry
 
-// MARK: - CGVector
+// MARK: - Zero
 
 public let CGVectorZero = CGVector(dx:0, dy:0)
+
+// MARK: - TwoDimensional
+
+extension CGVector : TwoDimensional
+{
+    public init<S1 : CGFloatConvertible, S2 : CGFloatConvertible>(_ x: S1, _ y: S2)
+    {
+        self.init(dx: CGFloat(x), dy: CGFloat(y))
+    }
+
+    public subscript(index: Int) -> CGFloat
+        {
+        set
+        {
+            switch index
+            {
+            case 0:
+                dx = newValue
+                
+            case 1:
+                dy = newValue
+                
+            default:
+                debugPrint("index (\(index)) out of bounds for \(self.dynamicType)")
+            }
+        }
+        get
+        {
+            switch index
+            {
+            case 0:
+                return dx
+                
+            case 1:
+                return dy
+                
+            default:
+                debugPrint("index (\(index)) out of bounds for \(self.dynamicType)")
+                return 0
+            }
+        }
+    }
+    
+    public var norm : CGFloat { return magnitude }
+}
 
 extension CGVector
 {
@@ -165,78 +209,6 @@ func isEqual(vector1: CGVector, vector2: CGVector, precision: CGFloat = CGFloat.
     return (vector1 - vector2).magnitude < abs(precision)
 }
 
-// MARK: operators
-
-public func + (vector1: CGVector, vector2: CGVector) -> CGVector
-{
-    return CGVector(dx: vector1.dx + vector2.dx, dy: vector1.dy + vector2.dy)
-}
-
-public func += (inout vector1: CGVector, vector2: CGVector)
-{
-    vector1 = vector1 + vector2
-}
-
-public func - (vector1: CGVector, vector2: CGVector) -> CGVector
-{
-    return CGVector(dx: vector1.dx - vector2.dx, dy: vector1.dy - vector2.dy)
-}
-
-public func -= (inout vector1: CGVector, vector2: CGVector)
-{
-    vector1 = vector1 - vector2
-}
-
-public func + (vector: CGVector, size: CGSize) -> CGVector
-{
-    return CGVector(dx: vector.dx + size.width, dy: vector.dy + size.height)
-}
-
-public func + (vector: CGVector, point: CGPoint) -> CGVector
-{
-    return CGVector(dx: vector.dx + point.x, dy: vector.dy + point.y)
-}
-
-public func += (inout vector: CGVector, size: CGSize)
-{
-    vector = vector + size
-}
-
-public func - (vector: CGVector, size: CGSize) -> CGVector
-{
-    return CGVector(dx: vector.dx - size.width, dy: vector.dy - size.height)
-}
-
-public func -= (inout vector: CGVector, size: CGSize)
-{
-    vector = vector - size
-}
-
-public func * (factor: CGFloat, vector: CGVector) -> CGVector
-{
-    return CGVector(dx: vector.dx * factor, dy: vector.dy * factor)
-}
-
-public func * (vector: CGVector, factor: CGFloat) -> CGVector
-{
-    return CGVector(dx: vector.dx * factor, dy: vector.dy * factor)
-}
-
-public func *= (inout vector: CGVector, factor: CGFloat)
-{
-    vector = vector * factor
-}
-
-public func / (vector: CGVector, factor: CGFloat) -> CGVector
-{
-    return CGVector(dx: vector.dx / factor, dy: vector.dy / factor)
-}
-
-public func /= (inout vector: CGVector, factor: CGFloat)
-{
-    vector = vector / factor
-}
-
 //MARK: - Draw
 
 import UIKit
@@ -280,7 +252,7 @@ public extension CGVector
         let tailWidth = max(1, length / 30)
         let headWidth = max(3, length / 10)
         
-        let headStartPoint = lerp(startPoint, toPoint, CGFloat(0.9))
+        let headStartPoint = (startPoint, toPoint) ◊ 0.9
         
         let p = perpendicular().normalized
         
@@ -299,12 +271,4 @@ public extension CGVector
         
         return path
     }
-}
-
-// MARK: - LERP
-
-/// Basic linear interpolation of two CGVector
-public func ◊ (ab: (CGVector, CGVector), t: CGFloat) -> CGVector
-{
-    return ab.0 * (1 - t) + ab.1 * t
 }

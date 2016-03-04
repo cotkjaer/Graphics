@@ -7,8 +7,7 @@
 //
 
 import XCTest
-//@testable import Geometry
-//import Arithmetic
+@testable import Graphics
 
 class GeometryTests: XCTestCase
 {

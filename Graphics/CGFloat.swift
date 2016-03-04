@@ -10,6 +10,17 @@ import Arithmetic
 
 extension CGFloat : FloatingPointArithmeticType {}
 
+
+// MARK: - Convertible
+
+public extension CGFloat
+{
+    public init<C:CGFloatConvertible>(_ convertible: C)
+    {
+        self = convertible.cgFloat
+    }
+}
+
 // MARK: - Power
 
 //public func ** (left: CGFloat, right: CGFloat) -> CGFloat { return left.pow(right) }
@@ -35,6 +46,24 @@ extension CGFloat
     
     /// Nearest integral value, eaqual to, less than, or greater than `self`
     public var round : CGFloat { return CoreGraphics.round(self) }
+}
+
+//MARK: - Round
+//TODO: move to Arithmetic
+public func round(f: CGFloat, toDecimals: Int = 0) -> CGFloat
+{
+    let decimals = max(0, toDecimals)
+    
+    if decimals == 0
+    {
+        return f.round
+    }
+    else
+    {
+        let factor = pow(10, CGFloat(decimals))
+        
+        return (f * factor) / factor
+    }
 }
 
 // MARK: - Epsilon

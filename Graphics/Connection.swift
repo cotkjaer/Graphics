@@ -6,7 +6,6 @@
 //  Copyright © 2016 Christian Otkjær. All rights reserved.
 //
 
-import Geometry
 
 public class ConnectionEndpoint
 {
