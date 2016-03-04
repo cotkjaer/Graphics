@@ -8,7 +8,7 @@
 
 import Arithmetic
 
-public protocol TwoDimensional: Zeroable, Addable, Subtractable, Multipliable, Dividable, Roundable, FuzzyEquatable
+public protocol TwoDimensional: Zeroable, Addable, Subtractable, Multipliable, Dividable, Roundable, FuzzyEquatable, Equatable, CollectionType
 {
     init<T: TwoDimensional>(_ other: T)
 
@@ -19,6 +19,10 @@ public protocol TwoDimensional: Zeroable, Addable, Subtractable, Multipliable, D
     subscript(_: Int) -> CGFloat { get set }
     
     var norm : CGFloat { get }
+    
+    var minimum : CGFloat { get }
+    
+    var maximum : CGFloat { get }
 }
 
 // MARK: - Default
@@ -38,6 +42,10 @@ extension TwoDimensional
     }
     
     public var norm : CGFloat { return sqrt(pow(self[0], 2) + pow (self[1] , 2))}
+    
+    public var minimum : CGFloat { return min(self[0], self[2]) }
+    
+    public var maximum : CGFloat { return max(self[0], self[2]) }
 }
 
 // MARK: - Addable
@@ -224,3 +232,11 @@ extension TwoDimensional
 
 public func ≈≈ <T: TwoDimensional>(lhs: T, rhs: T) -> Bool { return lhs[0] ≈≈ rhs[0] && lhs[1] ≈≈ rhs[1] }
 
+
+// MARK: - CollectionType
+
+extension TwoDimensional
+{
+    public var startIndex: Int { return 0 }
+    public var endIndex: Int { return 2 }
+}
