@@ -10,16 +10,25 @@ import UIKit
 
 import Arithmetic
 
-// MARK: - CGRect
+// MARK: - convenience initializers
 
 public extension CGRect
 {
     public init(size: CGSize)
     {
-        origin = CGPointZero
-        self.size = size
+        self.init(origin: CGPointZero, size: size)
     }
     
+    public init(origin: CGPoint)
+    {
+        self.init(origin: origin, size: CGSizeZero)
+    }
+}
+
+// MARK: - center
+
+public extension CGRect
+{
     public init(center: CGPoint, size: CGSize)
     {
         self.init(x : center.x - size.width / 2, y : center.y - size.height / 2, width: size.width, height: size.height)
@@ -29,20 +38,6 @@ public extension CGRect
         {
         get { return CGPoint(x: centerX, y: centerY) }
         set { centerX = newValue.x; centerY = newValue.y }
-    }
-    
-    // MARK: shortcuts
-    
-    var x: CGFloat
-        {
-        get { return origin.x }
-        set { origin.x = newValue }
-    }
-    
-    var y: CGFloat
-        {
-        get { return origin.y }
-        set { origin.y = newValue }
     }
     
     // MARK: private center
@@ -58,9 +53,32 @@ public extension CGRect
         get { return y + height * 0.5 }
         set { y = newValue - height * 0.5 }
     }
+}
+
+// MARK: - Shortcuts
+
+public extension CGRect
+{
+    // MARK:
     
-    // MARK: edges
+    var x: CGFloat
+        {
+        get { return origin.x }
+        set { origin.x = newValue }
+    }
     
+    var y: CGFloat
+        {
+        get { return origin.y }
+        set { origin.y = newValue }
+    }
+}
+
+
+// MARK: edges
+
+public extension CGRect
+{
     var top: CGFloat
         {
         get { return y }
@@ -141,9 +159,12 @@ public extension CGRect
     {
         return CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: width, height: height))
     }
-    
-    // MARK: inset
-    
+}
+
+// MARK: inset
+
+public extension CGRect
+{
     mutating func inset(edgeInset: UIEdgeInsets)
     {
         inset(top: edgeInset.top, left: edgeInset.left, bottom: edgeInset.bottom, right: edgeInset.right)
@@ -172,24 +193,24 @@ public extension CGRect
         size.height = height - top - bottom
     }
     
-    mutating func inset(topLeft topLeft: CGSize)
+    mutating func inset<T:TwoDimensional>(topLeft topLeft: T)
     {
-        inset(top: topLeft.height, left: topLeft.width, bottom: 0, right: 0)
+        inset(top: topLeft[1], left: topLeft[0])
     }
     
-    mutating func inset(topRight topRight: CGSize)
+    mutating func inset<T:TwoDimensional>(topRight topRight: T)
     {
-        inset(top: topRight.height, right: topRight.width, bottom: 0, left: 0)
+        inset(top: topRight[1], right: topRight[0])
     }
     
-    mutating func inset(bottomLeft bottomLeft: CGSize)
+    mutating func inset<T:TwoDimensional>(bottomLeft bottomLeft: T)
     {
-        inset(bottom: bottomLeft.height, left: bottomLeft.width)
+        inset(bottom: bottomLeft[1], left: bottomLeft[0])
     }
     
-    mutating func inset(bottomRight bottomRight: CGSize)
+    mutating func inset<T:TwoDimensional>(bottomRight bottomRight: T)
     {
-        inset(bottom: bottomRight.height, right: bottomRight.width)
+        inset(bottom: bottomRight[1], right: bottomRight[0])
     }
 }
 
@@ -267,8 +288,8 @@ extension CGRect
 
 extension CGRect
 {
-    public var minWidthHeight : CGFloat { return size.minWidthHeight }
-    public var maxWidthHeight : CGFloat { return size.maxWidthHeight }
+    public var minWidthHeight : CGFloat { return size.minimum }
+    public var maxWidthHeight : CGFloat { return size.maximum }
 }
 
 // MARK: - Relative position

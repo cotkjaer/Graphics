@@ -50,21 +50,15 @@ extension CGSize : TwoDimensional
             }
         }
     }
-
 }
+
+// MARK: - With
 
 extension CGSize
 {
-    // MARK: with
-    
-    public func with(width width: CGFloat) -> CGSize
+    public func with(width width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize
     {
-        return CGSize(width: width, height: height)
-    }
-    
-    public func with(height height: CGFloat) -> CGSize
-    {
-        return CGSize(width: width, height: height)
+        return CGSize(width: width ?? self.width, height: height ?? self.height)
     }
     
     ///Returns *true* if `size` fits inside `self`
@@ -76,20 +70,12 @@ extension CGSize
 
 // MARK: - Zeroable
 
-extension CGSize : Zeroable
+extension CGSize
 {
     public static var zero : CGSize { return CGSizeZero }
 }
 
-//MARK: - Width and Height
-
-extension CGSize
-{
-    public var minWidthHeight : CGFloat { return min(width, height) }
-    public var maxWidthHeight : CGFloat { return max(width, height) }
-}
-
-// MARK: - Operators
+// MARK: - Transform
 
 public func * (size: CGSize, transform: CGAffineTransform) -> CGSize
 {

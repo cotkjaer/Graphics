@@ -10,7 +10,6 @@ import Arithmetic
 
 extension CGFloat : FloatingPointArithmeticType {}
 
-
 // MARK: - Convertible
 
 public extension CGFloat

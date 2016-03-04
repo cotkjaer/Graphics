@@ -8,11 +8,6 @@
 
 import Arithmetic
 
-extension CGPoint : Zeroable
-{
-    public static var zero : CGPoint { return CGPointZero }
-}
-
 // MARK: - TwoDimensional
 
 extension CGPoint : TwoDimensional
@@ -55,7 +50,9 @@ extension CGPoint : TwoDimensional
         }
     }
     
-    public var norm : CGFloat { return distance(to: CGPoint.zero) }
+    public var norm : CGFloat { return sqrt(x*x + y*y) }
+    
+    public static var zero : CGPoint { return CGPointZero }
 }
 
 // MARK: - Map

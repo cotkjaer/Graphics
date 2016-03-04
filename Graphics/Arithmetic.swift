@@ -43,9 +43,9 @@ extension TwoDimensional
     
     public var norm : CGFloat { return sqrt(pow(self[0], 2) + pow (self[1] , 2))}
     
-    public var minimum : CGFloat { return min(self[0], self[2]) }
+    public var minimum : CGFloat { return min(self[0], self[1]) }
     
-    public var maximum : CGFloat { return max(self[0], self[2]) }
+    public var maximum : CGFloat { return max(self[0], self[1]) }
 }
 
 // MARK: - Addable
