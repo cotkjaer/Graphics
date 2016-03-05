@@ -1,20 +1,20 @@
 //
-//  Arithmetic.swift
+//  CGFloatPair.swift
 //  Graphics
 //
-//  Created by Christian Otkjær on 04/03/16.
+//  Created by Christian Otkjær on 05/03/16.
 //  Copyright © 2016 Christian Otkjær. All rights reserved.
 //
 
 import Arithmetic
 
-public protocol TwoDimensional: Zeroable, Addable, Subtractable, Multipliable, Dividable, Roundable, FuzzyEquatable, Equatable, CollectionType
+public protocol CGFloatPair: CollectionType, Zeroable, Addable, Subtractable, Multipliable, Dividable, Roundable, FuzzyEquatable, Equatable
 {
-    init<T: TwoDimensional>(_ other: T)
-
-    init<S1: CGFloatConvertible>(_ : S1)
+    init<T: CGFloatPair>(_ other: T)
     
     init<S1: CGFloatConvertible, S2: CGFloatConvertible>(_: S1, _: S2)
+    
+    init<S1: CGFloatConvertible>(_ : S1)
     
     subscript(_: Int) -> CGFloat { get set }
     
@@ -27,16 +27,16 @@ public protocol TwoDimensional: Zeroable, Addable, Subtractable, Multipliable, D
 
 // MARK: - Default
 
-extension TwoDimensional
+extension CGFloatPair
 {
     public static var zero : Self { return Self(0) }
-
+    
     public init<S : CGFloatConvertible>(_ both: S)
     {
         self.init(both, both)
     }
     
-    public init<T: TwoDimensional>(_ other: T)
+    public init<T: CGFloatPair>(_ other: T)
     {
         self.init(other[0], other[1])
     }
@@ -50,85 +50,85 @@ extension TwoDimensional
 
 // MARK: - Addable
 
-public prefix func + <TwoD: TwoDimensional>(twoD: TwoD) -> TwoD
+public prefix func + <TwoD: CGFloatPair>(twoD: TwoD) -> TwoD
 {
     return twoD
 }
 
-public func + <T1: TwoDimensional, T2: TwoDimensional>(lhs: T1, rhs: T2) -> T1
+public func + <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, rhs: T2) -> T1
 {
     return T1(lhs[0] + rhs[0], lhs[1] + rhs[1])
 }
 
-public func += <T1: TwoDimensional, T2: TwoDimensional>(inout lhs: T1, rhs: T2)
+public func += <T1: CGFloatPair, T2: CGFloatPair>(inout lhs: T1, rhs: T2)
 {
     lhs = lhs + rhs
 }
 
 // MARK: - Subtractable
 
-public prefix func - <TwoD: TwoDimensional>(twoD: TwoD) -> TwoD
+public prefix func - <TwoD: CGFloatPair>(twoD: TwoD) -> TwoD
 {
     return TwoD(-twoD[0], -twoD[1])
 }
 
-public func - <T1: TwoDimensional, T2: TwoDimensional>(lhs: T1, rhs: T2) -> T1
+public func - <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, rhs: T2) -> T1
 {
     return T1(lhs[0] - rhs[0], lhs[1] - rhs[1])
 }
 
-public func -= <T1: TwoDimensional, T2: TwoDimensional>(inout lhs: T1, rhs: T2)
+public func -= <T1: CGFloatPair, T2: CGFloatPair>(inout lhs: T1, rhs: T2)
 {
     lhs = lhs - rhs
 }
 
 // MARK: - Multipliable
 
-public func * <T1: TwoDimensional, T2: TwoDimensional>(lhs: T1, rhs: T2) -> T1
+public func * <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, rhs: T2) -> T1
 {
     return T1(lhs[0] * rhs[0], lhs[1] * rhs[1])
 }
 
-public func * <T: TwoDimensional, S: CGFloatConvertible>(lhs: T, rhs: S) -> T
+public func * <T: CGFloatPair, S: CGFloatConvertible>(lhs: T, rhs: S) -> T
 {
     return T(lhs[0] * rhs, lhs[1] * rhs)
 }
 
-public func *= <T1: TwoDimensional, T2: TwoDimensional>(inout lhs: T1, rhs: T2)
+public func *= <T1: CGFloatPair, T2: CGFloatPair>(inout lhs: T1, rhs: T2)
 {
     lhs = lhs * rhs
 }
 
-public func *= <T: TwoDimensional, S: CGFloatConvertible>(inout lhs: T, rhs: S)
+public func *= <T: CGFloatPair, S: CGFloatConvertible>(inout lhs: T, rhs: S)
 {
     lhs = lhs * rhs
 }
 
 // MARK: - Dividable
 
-public func / <T1: TwoDimensional, T2: TwoDimensional>(lhs: T1, rhs: T2) -> T1
+public func / <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, rhs: T2) -> T1
 {
     return T1(lhs[0] / rhs[0], lhs[1] / rhs[1])
 }
 
-public func / <T: TwoDimensional, S: CGFloatConvertible>(lhs: T, rhs: S) -> T
+public func / <T: CGFloatPair, S: CGFloatConvertible>(lhs: T, rhs: S) -> T
 {
     return T(lhs[0] / rhs, lhs[1] / rhs)
 }
 
-public func /= <T1: TwoDimensional, T2: TwoDimensional>(inout lhs: T1, rhs: T2)
+public func /= <T1: CGFloatPair, T2: CGFloatPair>(inout lhs: T1, rhs: T2)
 {
     lhs = lhs / rhs
 }
 
-public func /= <T: TwoDimensional, S: CGFloatConvertible>(inout lhs: T, rhs: S)
+public func /= <T: CGFloatPair, S: CGFloatConvertible>(inout lhs: T, rhs: S)
 {
     lhs = lhs / rhs
 }
 
 // MARK: - Roundable
 
-extension TwoDimensional
+extension CGFloatPair
 {
     /**
      Round `self` to arbitrary whole multiplica of `point`
@@ -138,6 +138,25 @@ extension TwoDimensional
     public func rounded(toNearest toNearest: Self) -> Self
     {
         return Self(self[0].rounded(toNearest: toNearest[0]), self[1].rounded(toNearest: toNearest[1]))
+    }
+    
+    public mutating func round(toNearest number: Self)
+    {
+        self[0] = self[0].rounded(toNearest: number[0])
+        self[1] = self[1].rounded(toNearest: number[1])
+    }
+    
+    public func rounded(toDecimals decimals: Int = 0) -> Self
+    {
+        return
+            Self(self[0].rounded(toDecimals: decimals),
+                self[1].rounded(toDecimals: decimals))
+    }
+    
+    public mutating func round(toDecimals decimals: Int)
+    {
+        self[0] = self[0].rounded(toDecimals: decimals)
+        self[1] = self[1].rounded(toDecimals: decimals)
     }
     
     /// Largest integral value not greater than `self`
@@ -152,29 +171,29 @@ extension TwoDimensional
 
 // MARK: - ceil
 
-public func ceil<T: TwoDimensional>(t: T) -> T
+public func ceil<T: CGFloatPair>(t: T) -> T
 {
     return T(t[0].ceil, t[1].ceil)
 }
 
 // MARK: - floor
 
-public func floor<T: TwoDimensional>(t: T) -> T
+public func floor<T: CGFloatPair>(t: T) -> T
 {
     return T(t[0].floor, t[1].floor)
 }
 
 //MARK: - Round
 
-public func round<T: TwoDimensional>(t: T, toDecimals: Int = 0) -> T
+public func round<T: CGFloatPair>(t: T, toDecimals: Int = 0) -> T
 {
     return T(round(t[0], toDecimals: toDecimals), round(t[1], toDecimals: toDecimals))
 }
 
 // MARK: - LERP
 
-/// Basic linear interpolation of two TwoDimensionals
-public func ◊ <T: TwoDimensional, S: CGFloatConvertible> (ab: (T, T), t: S) -> T
+/// Basic linear interpolation of two CGFloatPairs
+public func ◊ <T: CGFloatPair, S: CGFloatConvertible> (ab: (T, T), t: S) -> T
 {
     return ab.0 * (1 - t) + ab.1 * t
 }
@@ -184,12 +203,12 @@ public func ◊ <T: TwoDimensional, S: CGFloatConvertible> (ab: (T, T), t: S) ->
 /// this is U+22C5 not U+00B7 (middle dot)
 infix operator ⋅ { associativity left precedence 160 }
 
-public func ⋅ <T1: TwoDimensional, T2: TwoDimensional>(lhs: T1, rhs: T2) -> CGFloat
+public func ⋅ <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, rhs: T2) -> CGFloat
 {
     return lhs[0] * rhs[0] + lhs[1] * rhs[1]
 }
 
-public func dot <T1: TwoDimensional, T2: TwoDimensional>(lhs: T1, _ rhs: T2) -> CGFloat
+public func dot <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, _ rhs: T2) -> CGFloat
 {
     return lhs ⋅ rhs
 }
@@ -198,19 +217,19 @@ public func dot <T1: TwoDimensional, T2: TwoDimensional>(lhs: T1, _ rhs: T2) -> 
 
 infix operator × { associativity left precedence 160 }
 
-public func × <T1: TwoDimensional, T2: TwoDimensional>(lhs: T1, rhs: T2) -> CGFloat
+public func × <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, rhs: T2) -> CGFloat
 {
     return lhs[0] * rhs[1] - lhs[1] * rhs[0]
 }
 
-public func cross <T1: TwoDimensional, T2: TwoDimensional>(lhs: T1, _ rhs: T2) -> CGFloat
+public func cross <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, _ rhs: T2) -> CGFloat
 {
     return lhs × rhs
 }
 
 // MARK: - Map
 
-extension TwoDimensional
+extension CGFloatPair
 {
     // MARK: map
     
@@ -222,7 +241,7 @@ extension TwoDimensional
 
 // MARK: - Fuzzy
 
-extension TwoDimensional
+extension CGFloatPair
 {
     public func equalTo(other: Self, within precision: Self) -> Bool
     {
@@ -230,12 +249,12 @@ extension TwoDimensional
     }
 }
 
-public func ≈≈ <T: TwoDimensional>(lhs: T, rhs: T) -> Bool { return lhs[0] ≈≈ rhs[0] && lhs[1] ≈≈ rhs[1] }
+public func ≈≈ <T: CGFloatPair>(lhs: T, rhs: T) -> Bool { return lhs[0] ≈≈ rhs[0] && lhs[1] ≈≈ rhs[1] }
 
 
 // MARK: - CollectionType
 
-extension TwoDimensional
+extension CGFloatPair
 {
     public var startIndex: Int { return 0 }
     public var endIndex: Int { return 2 }

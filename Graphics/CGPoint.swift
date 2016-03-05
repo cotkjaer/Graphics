@@ -8,9 +8,9 @@
 
 import Arithmetic
 
-// MARK: - TwoDimensional
+// MARK: - CGFloatPair
 
-extension CGPoint : TwoDimensional
+extension CGPoint : CGFloatPair
 {
     public init<S1 : CGFloatConvertible, S2 : CGFloatConvertible>(_ x: S1, _ y: S2)
     {

@@ -193,22 +193,22 @@ public extension CGRect
         size.height = height - top - bottom
     }
     
-    mutating func inset<T:TwoDimensional>(topLeft topLeft: T)
+    mutating func inset<T:CGFloatPair>(topLeft topLeft: T)
     {
         inset(top: topLeft[1], left: topLeft[0])
     }
     
-    mutating func inset<T:TwoDimensional>(topRight topRight: T)
+    mutating func inset<T:CGFloatPair>(topRight topRight: T)
     {
         inset(top: topRight[1], right: topRight[0])
     }
     
-    mutating func inset<T:TwoDimensional>(bottomLeft bottomLeft: T)
+    mutating func inset<T:CGFloatPair>(bottomLeft bottomLeft: T)
     {
         inset(bottom: bottomLeft[1], left: bottomLeft[0])
     }
     
-    mutating func inset<T:TwoDimensional>(bottomRight bottomRight: T)
+    mutating func inset<T:CGFloatPair>(bottomRight bottomRight: T)
     {
         inset(bottom: bottomRight[1], right: bottomRight[0])
     }

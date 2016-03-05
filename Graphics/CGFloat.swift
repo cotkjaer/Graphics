@@ -47,24 +47,6 @@ extension CGFloat
     public var round : CGFloat { return CoreGraphics.round(self) }
 }
 
-//MARK: - Round
-//TODO: move to Arithmetic
-public func round(f: CGFloat, toDecimals: Int = 0) -> CGFloat
-{
-    let decimals = max(0, toDecimals)
-    
-    if decimals == 0
-    {
-        return f.round
-    }
-    else
-    {
-        let factor = pow(10, CGFloat(decimals))
-        
-        return (f * factor) / factor
-    }
-}
-
 // MARK: - Epsilon
 
 extension CGFloat

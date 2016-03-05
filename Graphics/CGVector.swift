@@ -13,9 +13,9 @@ import Arithmetic
 
 //public let CGVectorZero = CGVector(dx:0, dy:0)
 
-// MARK: - TwoDimensional
+// MARK: - CGFloatPair
 
-extension CGVector : TwoDimensional
+extension CGVector : CGFloatPair
 {
     public init<S1 : CGFloatConvertible, S2 : CGFloatConvertible>(_ x: S1, _ y: S2)
     {

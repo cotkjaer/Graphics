@@ -9,9 +9,9 @@
 import CoreGraphics
 import Arithmetic
 
-// MARK: - TwoDimensional
+// MARK: - CGFloatPair
 
-extension CGSize : TwoDimensional
+extension CGSize : CGFloatPair
 {
     public init<S1 : CGFloatConvertible, S2 : CGFloatConvertible>(_ width: S1, _ height: S2)
     {
