@@ -94,6 +94,11 @@ public func * <T: CGFloatPair, S: CGFloatConvertible>(lhs: T, rhs: S) -> T
     return T(lhs[0] * rhs, lhs[1] * rhs)
 }
 
+public func * <T: CGFloatPair, S: CGFloatConvertible>(lhs: S, rhs: T) -> T
+{
+    return rhs * lhs
+}
+
 public func *= <T1: CGFloatPair, T2: CGFloatPair>(inout lhs: T1, rhs: T2)
 {
     lhs = lhs * rhs
