@@ -28,7 +28,6 @@
 		8FD873C01C76090300181FA6 /* CGColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873B71C76090300181FA6 /* CGColor.swift */; };
 		8FD873C21C76096E00181FA6 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD873C11C76096E00181FA6 /* Connection.swift */; };
 		8FD874881C76192A00181FA6 /* Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD874871C76192A00181FA6 /* Scaling.swift */; };
-		8FD8754E1C76297D00181FA6 /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8754D1C76297D00181FA6 /* UIBezierPath.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +64,6 @@
 		8FD873B71C76090300181FA6 /* CGColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGColor.swift; sourceTree = "<group>"; };
 		8FD873C11C76096E00181FA6 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		8FD874871C76192A00181FA6 /* Scaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scaling.swift; sourceTree = "<group>"; };
-		8FD8754D1C76297D00181FA6 /* UIBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +133,6 @@
 				8F8D90E51C8460D200142128 /* Supporting Files */,
 				8FD874871C76192A00181FA6 /* Scaling.swift */,
 				8FD873C11C76096E00181FA6 /* Connection.swift */,
-				8FD8754D1C76297D00181FA6 /* UIBezierPath.swift */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -272,7 +269,6 @@
 				8FD873C21C76096E00181FA6 /* Connection.swift in Sources */,
 				8F77132F1C89AE0300B6B218 /* CGFloatConvertible.swift in Sources */,
 				8F7E0CAF1C87109100C2104D /* CGFloat.swift in Sources */,
-				8FD8754E1C76297D00181FA6 /* UIBezierPath.swift in Sources */,
 				8FD873BD1C76090300181FA6 /* CGSize.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
