@@ -8,7 +8,7 @@
 
 import Arithmetic
 
-public protocol CGFloatPair: CollectionType, Zeroable, Addable, Subtractable, Multipliable, Dividable, Roundable, FuzzyEquatable, Equatable
+public protocol CGFloatPair: Zeroable, Addable, Subtractable, Multipliable, Dividable, Roundable, FuzzyEquatable, Equatable
 {
     init<T: CGFloatPair>(_ other: T)
     
@@ -250,12 +250,3 @@ extension CGFloatPair
 }
 
 public func ≈≈ <T: CGFloatPair>(lhs: T, rhs: T) -> Bool { return lhs[0] ≈≈ rhs[0] && lhs[1] ≈≈ rhs[1] }
-
-
-// MARK: - CollectionType
-
-extension CGFloatPair
-{
-    public var startIndex: Int { return 0 }
-    public var endIndex: Int { return 2 }
-}

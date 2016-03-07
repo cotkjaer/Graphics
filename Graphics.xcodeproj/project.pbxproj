@@ -10,8 +10,6 @@
 		8F7711791C87246D00B6B218 /* InterpolationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7711781C87246D00B6B218 /* InterpolationTests.swift */; };
 		8F77132F1C89AE0300B6B218 /* CGFloatConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F77132E1C89AE0300B6B218 /* CGFloatConvertible.swift */; };
 		8F7713311C89B1CE00B6B218 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7713301C89B1CE00B6B218 /* Line.swift */; };
-		8F7713351C89B9A600B6B218 /* CGFloatCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7713341C89B9A600B6B218 /* CGFloatCollection.swift */; };
-		8F7713391C89F5DB00B6B218 /* TestCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7713381C89F5DA00B6B218 /* TestCollection.swift */; };
 		8F7E0CAF1C87109100C2104D /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7E0CAE1C87109100C2104D /* CGFloat.swift */; };
 		8F8D90E11C845B2B00142128 /* Arithmetic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F8D90DF1C845B2B00142128 /* Arithmetic.framework */; };
 		8F8D90E31C845FB800142128 /* Arithmetic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F8D90DF1C845B2B00142128 /* Arithmetic.framework */; };
@@ -47,8 +45,6 @@
 		8F7711781C87246D00B6B218 /* InterpolationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpolationTests.swift; sourceTree = "<group>"; };
 		8F77132E1C89AE0300B6B218 /* CGFloatConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatConvertible.swift; sourceTree = "<group>"; };
 		8F7713301C89B1CE00B6B218 /* Line.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
-		8F7713341C89B9A600B6B218 /* CGFloatCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatCollection.swift; sourceTree = "<group>"; };
-		8F7713381C89F5DA00B6B218 /* TestCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCollection.swift; sourceTree = "<group>"; };
 		8F7E0CAE1C87109100C2104D /* CGFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		8F8D90DF1C845B2B00142128 /* Arithmetic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Arithmetic.framework; path = Carthage/Build/iOS/Arithmetic.framework; sourceTree = "<group>"; };
 		8F91BA351C84449D004CBDB9 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -135,7 +131,6 @@
 				8F7E0CAE1C87109100C2104D /* CGFloat.swift */,
 				8F77132E1C89AE0300B6B218 /* CGFloatConvertible.swift */,
 				8F7713301C89B1CE00B6B218 /* Line.swift */,
-				8F7713341C89B9A600B6B218 /* CGFloatCollection.swift */,
 				8FBDDAB71C8B0364007C0B4C /* CGFloatPair.swift */,
 				8F8D90E51C8460D200142128 /* Supporting Files */,
 				8FD874871C76192A00181FA6 /* Scaling.swift */,
@@ -151,7 +146,6 @@
 				8F7711781C87246D00B6B218 /* InterpolationTests.swift */,
 				8F91BA3D1C845011004CBDB9 /* EqualityTests.swift */,
 				8FD873A41C7608EA00181FA6 /* GraphicsTests.swift */,
-				8F7713381C89F5DA00B6B218 /* TestCollection.swift */,
 				8FD873A61C7608EA00181FA6 /* Info.plist */,
 			);
 			path = GraphicsTests;
@@ -271,7 +265,6 @@
 				8FD873BE1C76090300181FA6 /* CGVector.swift in Sources */,
 				8FD873C01C76090300181FA6 /* CGColor.swift in Sources */,
 				8FD873BC1C76090300181FA6 /* CGRect.swift in Sources */,
-				8F7713351C89B9A600B6B218 /* CGFloatCollection.swift in Sources */,
 				8FD873B91C76090300181FA6 /* CGContext.swift in Sources */,
 				8FBDDAB81C8B0364007C0B4C /* CGFloatPair.swift in Sources */,
 				8FD874881C76192A00181FA6 /* Scaling.swift in Sources */,
@@ -291,7 +284,6 @@
 				8F7711791C87246D00B6B218 /* InterpolationTests.swift in Sources */,
 				8FD873A51C7608EA00181FA6 /* GraphicsTests.swift in Sources */,
 				8F91BA3E1C845011004CBDB9 /* EqualityTests.swift in Sources */,
-				8F7713391C89F5DB00B6B218 /* TestCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
