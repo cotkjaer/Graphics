@@ -216,10 +216,7 @@ public extension CGRect
 
 //MARK: - Zero
 
-extension CGRect : Zeroable
-{
-//    public static var zero : CGRect { return CGRect.zero }
-}
+extension CGRect : Zeroable {}
 
 // MARK: - Edge points
 

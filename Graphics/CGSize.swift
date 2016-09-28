@@ -68,13 +68,6 @@ extension CGSize
     }
 }
 
-// MARK: - Zeroable
-
-extension CGSize
-{
-//    public static var zero : CGSize { return CGSize.zero }
-}
-
 // MARK: - Transform
 
 public func * (size: CGSize, transform: CGAffineTransform) -> CGSize

@@ -9,10 +9,6 @@
 import CoreGraphics
 import Arithmetic
 
-// MARK: - Zero
-
-//public let CGVectorZero = CGVector(dx:0, dy:0)
-
 // MARK: - CGFloatPair
 
 extension CGVector : CGFloatPair

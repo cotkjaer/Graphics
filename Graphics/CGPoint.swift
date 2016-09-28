@@ -51,8 +51,6 @@ extension CGPoint : CGFloatPair
     }
     
     public var norm : CGFloat { return sqrt(x*x + y*y) }
-    
-//    public static var zero : CGPoint { return CGPoint.zero }
 }
 
 // MARK: - Map

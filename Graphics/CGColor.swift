@@ -6,7 +6,6 @@
 //  Copyright © 2015 Christian Otkjær. All rights reserved.
 //
 
-
 import CoreGraphics
 
 import UIKit
@@ -43,9 +42,9 @@ public extension CGColor
     class func color(colorSpace: CGColorSpace, components: [CGFloat]) -> CGColor
     {
         return components.withUnsafeBufferPointer
-        {
-            (buffer: UnsafeBufferPointer<CGFloat>) -> CGColor! in
-            return CGColor(colorSpace: colorSpace, components: buffer.baseAddress!)
+            {
+                (buffer: UnsafeBufferPointer<CGFloat>) -> CGColor! in
+                return CGColor(colorSpace: colorSpace, components: buffer.baseAddress!)
         }
     }
     
@@ -69,20 +68,18 @@ public extension CGColor
 {
     var colorSpace: CGColorSpace { return self.colorSpace }
     
-    public static let Black = UIColor.black.cgColor
-    
-    public class func blackColor() -> CGColor { return UIColor.black.cgColor }
-    public class func darkGrayColor() -> CGColor { return UIColor.darkGray.cgColor }
-    public class func lightGrayColor() -> CGColor { return UIColor.lightGray.cgColor }
-    public class func whiteColor() -> CGColor { return UIColor.white.cgColor }
-    public class func grayColor() -> CGColor { return UIColor.gray.cgColor }
-    public class func redColor() -> CGColor { return UIColor.red.cgColor }
-    public class func greenColor() -> CGColor { return UIColor.green.cgColor }
-    public class func blueColor() -> CGColor { return UIColor.blue.cgColor }
-    public class func cyanColor() -> CGColor { return UIColor.cyan.cgColor }
-    public class func yellowColor() -> CGColor { return UIColor.yellow.cgColor }
-    public class func orangeColor() -> CGColor { return UIColor.orange.cgColor }
-    public class func purpleColor() -> CGColor { return UIColor.purple.cgColor }
-    public class func brownColor() -> CGColor { return UIColor.brown.cgColor }
-    public class func clearColor() -> CGColor { return UIColor.clear.cgColor }
+    public static let black = UIColor.black.cgColor
+    public static let darkGray = UIColor.darkGray.cgColor
+    public static let lightGray = UIColor.lightGray.cgColor
+    public static let white = UIColor.white.cgColor
+    public static let gray = UIColor.gray.cgColor
+    public static let red = UIColor.red.cgColor
+    public static let green = UIColor.green.cgColor
+    public static let blue = UIColor.blue.cgColor
+    public static let cyan = UIColor.cyan.cgColor
+    public static let yellow = UIColor.yellow.cgColor
+    public static let orange = UIColor.orange.cgColor
+    public static let purple = UIColor.purple.cgColor
+    public static let brown = UIColor.brown.cgColor
+    public static let clear = UIColor.clear.cgColor
 }
