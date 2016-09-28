@@ -12,7 +12,7 @@ import Arithmetic
 
 public extension CGPoint
 {
-    func distanceToLineSegment(v v: CGPoint, w: CGPoint) -> CGFloat
+    func distanceToLineSegment(v: CGPoint, w: CGPoint) -> CGFloat
     {
         if v == w { return distance(to: v) }
         
@@ -42,7 +42,7 @@ public extension CGPoint
      Minimum distance between line segment and `self`
      - parameter ls: line-segment tuple
      */
-    func distanceToLineSegment(ls: (CGPoint, CGPoint)) -> CGFloat
+    func distanceToLineSegment(_ ls: (CGPoint, CGPoint)) -> CGFloat
     {
         return distanceToLineSegment(v:ls.0, w:ls.1)
     }

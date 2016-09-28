@@ -26,8 +26,8 @@ public extension CGFloat
 
 extension CGFloat : Powerable
 {
-    @warn_unused_result
-    public func pow(rhs: CGFloat) -> CGFloat
+    
+    public func pow(_ rhs: CGFloat) -> CGFloat
     {
         return CoreGraphics.pow(self, rhs)
     }
@@ -56,7 +56,7 @@ extension CGFloat
     {
         #if arch(arm64) || arch(x86_64)
             
-            assert(sizeof(Double) == sizeof(CGFloat))
+            assert(MemoryLayout<Double>.size == MemoryLayout<CGFloat>.size)
             return CGFloat(DBL_EPSILON)
             
         #elseif arch(arm) || arch(i386)

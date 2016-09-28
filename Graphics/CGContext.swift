@@ -14,36 +14,36 @@ public extension CGContext
 {
     // MARK: - Translate
     
-    func translate(tx tx: CGFloat, ty: CGFloat)
+    func translate(tx: CGFloat, ty: CGFloat)
     {
-        CGContextTranslateCTM(self, tx , ty)
+        self.translateBy(x: tx , y: ty)
     }
 
-    func translate(point: CGPoint)
+    func translate(_ point: CGPoint)
     {
         translate(tx: point.x, ty: point.y)
     }
     
-    func translate(vector: CGVector)
+    func translate(_ vector: CGVector)
     {
         translate(tx: vector.dx, ty: vector.dy)
     }
 
     // MARK: - Scale
     
-    func scale(sx sx: CGFloat, sy: CGFloat)
+    func scale(sx: CGFloat, sy: CGFloat)
     {
-        CGContextScaleCTM(self, sx, sy)
+        self.scaleBy(x: sx, y: sy)
     }
     
     // MARK: - Rotate
     
-    func rotate(angle: CGFloat)
+    func rotate(_ angle: CGFloat)
     {
-        CGContextRotateCTM(self, angle)
+        self.rotate(by: angle)
     }
 
-    func rotate(angle: CGFloat, aroundPoint point: CGPoint)
+    func rotate(_ angle: CGFloat, aroundPoint point: CGPoint)
     {
         translate(point)
         rotate(angle)

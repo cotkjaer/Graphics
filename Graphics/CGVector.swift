@@ -35,7 +35,7 @@ extension CGVector : CGFloatPair
                 dy = newValue
                 
             default:
-                debugPrint("index (\(index)) out of bounds for \(self.dynamicType)")
+                debugPrint("index (\(index)) out of bounds for \(type(of: self))")
             }
         }
         get
@@ -49,7 +49,7 @@ extension CGVector : CGFloatPair
                 return dy
                 
             default:
-                debugPrint("index (\(index)) out of bounds for \(self.dynamicType)")
+                debugPrint("index (\(index)) out of bounds for \(type(of: self))")
                 return 0
             }
         }
@@ -72,12 +72,12 @@ extension CGVector
         dy = to.y - from.y
     }
     
-    public func with(dx dx: CGFloat) -> CGVector
+    public func with(dx: CGFloat) -> CGVector
     {
         return CGVector(dx:dx, dy:dy)
     }
     
-    public func with(dy dy: CGFloat) -> CGVector
+    public func with(dy: CGFloat) -> CGVector
     {
         return CGVector(dx:dx, dy:dy)
     }
@@ -117,12 +117,12 @@ public extension CGVector
         }
     }
     
-    public func with(magnitude magnitude: CGFloat) -> CGVector
+    public func with(magnitude: CGFloat) -> CGVector
     {
         return CGVector(magnitude: magnitude, direction: direction)
     }
     
-    public func with(direction direction: CGFloat) -> CGVector
+    public func with(direction: CGFloat) -> CGVector
     {
         return CGVector(magnitude: magnitude, direction: direction)
     }
@@ -153,12 +153,12 @@ public extension CGVector
 
 public extension CGVector
 {
-    public func rotated(theta:CGFloat) -> CGVector
+    public func rotated(_ theta:CGFloat) -> CGVector
     {
         return with(direction: direction + theta)
     }
     
-    public mutating func rotate(theta: CGFloat)
+    public mutating func rotate(_ theta: CGFloat)
     {
         self = rotated(theta)
     }
@@ -170,7 +170,7 @@ public extension CGVector
     var transposed: CGVector { return CGVector(dx: dy, dy: dx) }
     
     /// returns: vector from rotation this by 90 degrees either clockwise or counterclockwise
-    func perpendicular(clockwise clockwise : Bool = true) -> CGVector
+    func perpendicular(clockwise : Bool = true) -> CGVector
     {
         return clockwise ? CGVector(dx: dy, dy: -dx) : CGVector(dx: -dy, dy: dx)
     }
@@ -179,12 +179,12 @@ public extension CGVector
 // MARK: - atan2
 
 /// ]-π;π]
-public func atan2(vector: CGVector) -> CGFloat
+public func atan2(_ vector: CGVector) -> CGFloat
 {
     return atan2(vector.dy, vector.dx)
 }
 
-func length(vector: CGVector) -> CGFloat
+func length(_ vector: CGVector) -> CGFloat
 {
     return vector.magnitude
 }
@@ -198,13 +198,13 @@ func midPoint(between vector1:CGVector, and vector2:CGVector) -> CGVector
 
 extension CGVector//: Equatable
 {
-    func isEqualTo(vector: CGVector, withPrecision precision:CGFloat) -> Bool
+    func isEqualTo(_ vector: CGVector, withPrecision precision:CGFloat) -> Bool
     {
         return  (self - vector).magnitude < abs(precision)
     }
 }
 
-func isEqual(vector1: CGVector, vector2: CGVector, precision: CGFloat = CGFloat.epsilon) -> Bool
+func isEqual(_ vector1: CGVector, vector2: CGVector, precision: CGFloat = CGFloat.epsilon) -> Bool
 {
     return (vector1 - vector2).magnitude < abs(precision)
 }
@@ -213,10 +213,9 @@ func isEqual(vector1: CGVector, vector2: CGVector, precision: CGFloat = CGFloat.
 
 import UIKit
 
-
 public extension CGVector
 {
-    func draw(atPoint point: CGPoint, withColor color: UIColor = UIColor.blueColor(), inContext: CGContextRef? = UIGraphicsGetCurrentContext())
+    func draw(atPoint point: CGPoint, withColor color: UIColor = UIColor.blue, inContext: CGContext? = UIGraphicsGetCurrentContext())
     {
         guard let context = inContext else { return }
         
@@ -224,7 +223,7 @@ public extension CGVector
         
         guard l > CGFloat.epsilon else { return }
         
-        CGContextSaveGState(context)
+        context.saveGState()
         
         color.setStroke()
         
@@ -237,15 +236,15 @@ public extension CGVector
             vectorToDraw *= 10 / l
         }
         
-        path.moveToPoint(point)
-        path.addLineToPoint(point + vectorToDraw)
+        path.move(to: point)
+        path.addLine(to: point + vectorToDraw)
         
         path.stroke()
         
-        CGContextRestoreGState(context)
+        context.restoreGState()
     }
     
-    func bezierPathWithArrowFromPoint(startPoint: CGPoint) -> UIBezierPath
+    func bezierPathWithArrowFromPoint(_ startPoint: CGPoint) -> UIBezierPath
     {
         let length = magnitude
         let toPoint = startPoint + self
@@ -258,16 +257,16 @@ public extension CGVector
         
         let path = UIBezierPath()
         
-        path.moveToPoint(toPoint)
-        path.addLineToPoint(headStartPoint + p * headWidth)
-        path.addLineToPoint(headStartPoint + p * tailWidth)
-        path.addLineToPoint(startPoint + p * tailWidth)
+        path.move(to: toPoint)
+        path.addLine(to: headStartPoint + p * headWidth)
+        path.addLine(to: headStartPoint + p * tailWidth)
+        path.addLine(to: startPoint + p * tailWidth)
         
-        path.addLineToPoint(startPoint - p * tailWidth)
-        path.addLineToPoint(headStartPoint - p * tailWidth)
-        path.addLineToPoint(headStartPoint - p * headWidth)
+        path.addLine(to: startPoint - p * tailWidth)
+        path.addLine(to: headStartPoint - p * tailWidth)
+        path.addLine(to: headStartPoint - p * headWidth)
         
-        path.closePath()
+        path.close()
         
         return path
     }

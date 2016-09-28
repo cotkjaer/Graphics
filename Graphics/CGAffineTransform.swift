@@ -8,22 +8,7 @@
 
 import CoreGraphics
 
-// MARK: - Equatable
-
-extension CGAffineTransform: Equatable
-{
-    public func isEqualTo(transform:CGAffineTransform) -> Bool
-    {
-        return self == transform
-    }
-}
-
-public func == (t1: CGAffineTransform, t2: CGAffineTransform) -> Bool
-{
-    return CGAffineTransformEqualToTransform(t1, t2)
-}
-
-// MARK: - DebugPrintable
+// MARK: - CustomDebugStringConvertible
 
 extension CGAffineTransform: CustomDebugStringConvertible
 {
@@ -37,10 +22,10 @@ extension CGAffineTransform: CustomDebugStringConvertible
 
 public func * (t1: CGAffineTransform, t2: CGAffineTransform) -> CGAffineTransform
 {
-    return CGAffineTransformConcat(t1, t2)
+    return t1.concatenating(t2)
 }
 
-public func *= (inout t1: CGAffineTransform, t2: CGAffineTransform)
+public func *= (t1: inout CGAffineTransform, t2: CGAffineTransform)
 {
     t1 = t1 * t2
 }

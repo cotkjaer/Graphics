@@ -7,61 +7,47 @@
 //
 
 
-public class ConnectionEndpoint
+public enum ConnectionEndpoint
 {
-    public enum Type
+    case none, innerEllipse //, OuterEllipse, Frame, Border
+    
+    func pathForFrame(_ frame: CGRect?) -> UIBezierPath
     {
-        case None, InnerEllipse //, OuterEllipse, Frame, Border
-        
-        func pathForFrame(frame: CGRect?) -> UIBezierPath
+        if let f = frame
         {
-            if let f = frame
+            switch self
             {
-                switch self
-                {
-                case .None:
-                    return UIBezierPath()
-                case .InnerEllipse:
-                    return UIBezierPath(ovalInRect: f)
-                }
+            case .none:
+                return UIBezierPath()
+            case .innerEllipse:
+                return UIBezierPath(ovalIn: f)
             }
+        }
+        
+        return UIBezierPath()
+    }
+    
+    func pointOnRimAtAngle(_ theta: CGFloat?, forFrame frame:CGRect?) -> CGPoint?
+    {
+        guard let f = frame, let a = theta else { return nil }
+        
+        switch self
+        {
+        case .none:
+            return f.center
             
-            return UIBezierPath()
+        case .innerEllipse:
+            return CGPoint(x: cos(a) * f.width / 2, y: sin(a) * f.height / 2) + f.center
         }
-    }
-    
-    required public init() { }
-    
-    public var type : Type = .None
-    
-    func pathForFrame(frame:CGRect?) -> UIBezierPath
-    {
-        return type.pathForFrame(frame)
-    }
-    
-    func pointOnRimAtAngle(theta: CGFloat?, forFrame frame:CGRect?) -> CGPoint?
-    {
-        if let f = frame, let a = theta
-        {
-            switch type
-            {
-            case .None:
-                return f.center
-            case .InnerEllipse:
-                return CGPoint(x: cos(a) * f.width / 2, y: sin(a) * f.height / 2) + f.center
-            }
-        }
-        
-        return nil
     }
 }
 
-public class Connection: CAShapeLayer
+open class Connection: CAShapeLayer
 {
-    var location = CGPointZero
+    var location = CGPoint.zero
     
-    private let fromEndpoint = ConnectionEndpoint()
-    private let toEndpoint = ConnectionEndpoint()
+    fileprivate var fromEndpoint = ConnectionEndpoint.none
+    fileprivate var toEndpoint = ConnectionEndpoint.none
     
     required public init?(coder aDecoder: NSCoder)
     {
@@ -90,35 +76,35 @@ public class Connection: CAShapeLayer
         
         miterLimit = lineWidth * 2
         
-        strokeColor = UIColor.grayColor().CGColor
+        strokeColor = UIColor.gray.cgColor
         
-        fromEndpoint.type = .InnerEllipse
-        toEndpoint.type = .InnerEllipse
+        fromEndpoint = .innerEllipse
+        toEndpoint = .innerEllipse
     }
     
     public enum ConnectionAnchor
     {
         case
-        Right,
-        Left,
-        Up,
-        Down,
-        None
+        right,
+        left,
+        up,
+        down,
+        none
         
         var opposite : ConnectionAnchor
             {
                 switch self
                 {
-                case .Up:
-                    return .Down
-                case .Down:
-                    return .Up
-                case .Left:
-                    return .Right
-                case .Right:
-                    return .Left
-                case .None:
-                    return .None
+                case .up:
+                    return .down
+                case .down:
+                    return .up
+                case .left:
+                    return .right
+                case .right:
+                    return .left
+                case .none:
+                    return .none
                 }
         }
         
@@ -126,33 +112,33 @@ public class Connection: CAShapeLayer
             {
                 switch self
                 {
-                case .Up:
+                case .up:
                     return 3 * CGFloat.π_2
-                case .Down:
+                case .down:
                     return CGFloat.π_2
-                case .Left:
+                case .left:
                     return CGFloat.π
-                case .Right:
+                case .right:
                     return 0
-                case .None:
+                case .none:
                     return nil
                 }
         }
     }
     
-    public var fromFrame: CGRect?
+    open var fromFrame: CGRect?
         { didSet { if oldValue != fromFrame { updateConnection() } } }
     
-    public var toFrame: CGRect?
+    open var toFrame: CGRect?
         { didSet { if oldValue != toFrame { updateConnection() } } }
     
-    public var fromAnchor : ConnectionAnchor = .None
+    open var fromAnchor : ConnectionAnchor = .none
         { didSet { if oldValue != fromAnchor { updateConnection() } } }
     
-    public var toAnchor : ConnectionAnchor = .None
+    open var toAnchor : ConnectionAnchor = .none
         { didSet { if oldValue != toAnchor { updateConnection() } } }
     
-    public func updateConnection()
+    open func updateConnection()
     {
         let bezierPath = fromEndpoint.pathForFrame(fromFrame)
         
@@ -167,7 +153,7 @@ public class Connection: CAShapeLayer
             if let point = fromEndpoint.pointOnRimAtAngle(fromAnchor.angle, forFrame:fromFrame)
             {
                 fromPoint = point
-                bezierPath.moveToPoint(fromPoint)
+                bezierPath.move(to: fromPoint)
             }
             
             if let point = toEndpoint.pointOnRimAtAngle(toAnchor.angle, forFrame:toFrame)
@@ -175,23 +161,23 @@ public class Connection: CAShapeLayer
                 toPoint = point
             }
             
-            bezierPath.moveToPoint(fromPoint)
+            bezierPath.move(to: fromPoint)
             
             switch toAnchor
             {
-            case .Up:
+            case .up:
                 toPoint = toFrame.topCenter
                 controlPoint2 = toPoint.with(y: (fromPoint.y + toPoint.y) / 2)
-            case .Down:
+            case .down:
                 toPoint = toFrame.bottomCenter
                 controlPoint2 = toPoint.with(y: (fromPoint.y + toPoint.y) / 2)
-            case .Left:
+            case .left:
                 toPoint = toFrame.centerLeft
                 controlPoint2 = toPoint.with(x: (fromPoint.x + toPoint.x) / 2)
-            case .Right:
+            case .right:
                 toPoint = toFrame.centerRight
                 controlPoint2 = toPoint.with(x: (fromPoint.x + toPoint.x) / 2)
-            case .None:
+            case .none:
                 bezierPath.removeAllPoints()
                 path = nil
                 return
@@ -199,33 +185,33 @@ public class Connection: CAShapeLayer
             
             switch fromAnchor
             {
-            case .Up:
+            case .up:
                 controlPoint1 = fromPoint.with(y: (fromPoint.y + toPoint.y) / 2)
-            case .Down:
+            case .down:
                 controlPoint1 = fromPoint.with(y: (fromPoint.y + toPoint.y) / 2)
-            case .Left:
+            case .left:
                 controlPoint1 = fromPoint.with(x: (fromPoint.x + toPoint.x) / 2)
-            case .Right:
+            case .right:
                 controlPoint1 = fromPoint.with(x: (fromPoint.x + toPoint.x) / 2)
-            case .None:
+            case .none:
                 bezierPath.removeAllPoints()
                 path = nil
                 return
             }
             
-            bezierPath.addCurveToPoint(toPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
+            bezierPath.addCurve(to: toPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
             
-            bezierPath.appendPath(toEndpoint.pathForFrame(toFrame))
+            bezierPath.append(toEndpoint.pathForFrame(toFrame))
         }
         
-        path = bezierPath.CGPath
+        path = bezierPath.cgPath
     }
     
     //MARK: - Animation
     
-    public var animatePath : Bool = false
+    open var animatePath : Bool = false
     
-    override public func actionForKey(event: String) -> CAAction?
+    override open func action(forKey event: String) -> CAAction?
     {
         if event == "path" && animatePath
         {
@@ -236,6 +222,6 @@ public class Connection: CAShapeLayer
             return animation
         }
         
-        return super.actionForKey(event)
+        return super.action(forKey: event)
     }
 }

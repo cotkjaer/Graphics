@@ -30,7 +30,7 @@ extension CGPoint : CGFloatPair
                 y = newValue
                 
             default:
-                debugPrint("index (\(index)) out of bounds for \(self.dynamicType)")
+                debugPrint("index (\(index)) out of bounds for \(type(of: self))")
             }
         }
         get
@@ -44,7 +44,7 @@ extension CGPoint : CGFloatPair
                 return y
                 
             default:
-                debugPrint("index (\(index)) out of bounds for \(self.dynamicType)")
+                debugPrint("index (\(index)) out of bounds for \(type(of: self))")
                 return 0
             }
         }
@@ -52,7 +52,7 @@ extension CGPoint : CGFloatPair
     
     public var norm : CGFloat { return sqrt(x*x + y*y) }
     
-    public static var zero : CGPoint { return CGPointZero }
+//    public static var zero : CGPoint { return CGPoint.zero }
 }
 
 // MARK: - Map
@@ -61,12 +61,12 @@ public extension CGPoint
 {
     // MARK: with
     
-    func with<Scalar: CGFloatConvertible>(x x: Scalar) -> CGPoint
+    func with<Scalar: CGFloatConvertible>(x: Scalar) -> CGPoint
     {
         return CGPoint(x, y)
     }
     
-    func with<Scalar: CGFloatConvertible>(y y: Scalar) -> CGPoint
+    func with<Scalar: CGFloatConvertible>(y: Scalar) -> CGPoint
     {
         return CGPoint(x, y)
     }
@@ -76,7 +76,7 @@ public extension CGPoint
 
 public extension CGPoint
 {
-    public func angleToPoint(point: CGPoint) -> CGFloat
+    public func angleToPoint(_ point: CGPoint) -> CGFloat
     {
         return atan2(point.y - y, point.x - x)
     }
@@ -87,7 +87,7 @@ public extension CGPoint
 public extension CGPoint
 {
     /// angle is in radians
-    public mutating func rotate(theta:CGFloat, around center:CGPoint)
+    public mutating func rotate(_ theta:CGFloat, around center:CGPoint)
     {
         let sinTheta = sin(theta)
         let cosTheta = cos(theta)
@@ -102,12 +102,12 @@ public extension CGPoint
         y = center.y + translatedY
     }
     
-    public func rotated(theta:CGFloat, around center:CGPoint) -> CGPoint
+    public func rotated(_ theta:CGFloat, around center:CGPoint) -> CGPoint
     {
         return (self - center).rotated(theta) + center
     }
     
-    public func rotated(theta:CGFloat) -> CGPoint
+    public func rotated(_ theta:CGFloat) -> CGPoint
     {
         let sinTheta = sin(theta)
         let cosTheta = cos(theta)
@@ -129,20 +129,20 @@ public func rotate(point p1:CGPoint, radians: CGFloat, around rhs:CGPoint) -> CG
 
 extension CGPoint
 {
-    public mutating func translate<S1: CGFloatConvertible, S2: CGFloatConvertible>(dx: S1? = nil, dy: S2? = nil)
+    public mutating func translate<S1: CGFloatConvertible, S2: CGFloatConvertible>(_ dx: S1? = nil, dy: S2? = nil)
     {
         if let delta = dx
         {
-            x += delta
+            x += delta as! CGFloat
         }
         
         if let delta = dy
         {
-            y += delta
+            y += delta as! CGFloat
         }
     }
     
-    public func translated<S1: CGFloatConvertible, S2: CGFloatConvertible>(dx: S1? = nil, dy: S2? = nil) -> CGPoint
+    public func translated<S1: CGFloatConvertible, S2: CGFloatConvertible>(_ dx: S1? = nil, dy: S2? = nil) -> CGPoint
     {
         var p = CGPoint(x: x, y: y)
         
@@ -169,13 +169,13 @@ extension CGPoint
 
 extension CGPoint : ApproximatelyEquatable
 {
-    public func isEqualTo(point: CGPoint, withPrecision precision:CGFloat = CGFloat.epsilon) -> Bool
+    public func isEqualTo(_ point: CGPoint, withPrecision precision:CGFloat = CGFloat.epsilon) -> Bool
     {
         return distance(to: point) < abs(precision)
     }
 }
 
-public func isEqual(lhs: CGPoint, rhs: CGPoint, withPrecision precision:CGFloat) -> Bool
+public func isEqual(_ lhs: CGPoint, rhs: CGPoint, withPrecision precision:CGFloat) -> Bool
 {
     return distance(lhs, rhs) < abs(precision)
 }
@@ -184,10 +184,10 @@ public func isEqual(lhs: CGPoint, rhs: CGPoint, withPrecision precision:CGFloat)
 
 public func * (point: CGPoint, transform: CGAffineTransform) -> CGPoint
 {
-    return CGPointApplyAffineTransform(point, transform)
+    return point.applying(transform)
 }
 
-public func *= (inout point: CGPoint, transform: CGAffineTransform)
+public func *= (point: inout CGPoint, transform: CGAffineTransform)
 {
     point = point * transform
 }
@@ -209,12 +209,12 @@ extension CGPoint
     }
 }
 
-public func distance(lhs: CGPoint, _ rhs: CGPoint) -> CGFloat
+public func distance(_ lhs: CGPoint, _ rhs: CGPoint) -> CGFloat
 {
     return sqrt(distanceSquared(lhs, rhs))
 }
 
-public func distanceSquared(lhs: CGPoint, _ rhs: CGPoint) -> CGFloat
+public func distanceSquared(_ lhs: CGPoint, _ rhs: CGPoint) -> CGFloat
 {
     return pow(lhs.x - rhs.x, 2) + pow(lhs.y - rhs.y, 2)
 }

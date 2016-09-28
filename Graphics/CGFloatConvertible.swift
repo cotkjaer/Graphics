@@ -40,7 +40,7 @@ public func + <Scalar: CGFloatConvertible> (lhs : CGFloat, rhs: Scalar) -> CGFlo
     return lhs + CGFloat(rhs)
 }
 
-public func += <Scalar: CGFloatConvertible> (inout lhs : CGFloat, rhs: Scalar)
+public func += <Scalar: CGFloatConvertible> (lhs : inout CGFloat, rhs: Scalar)
 {
     lhs += CGFloat(rhs)
 }
@@ -50,7 +50,7 @@ public func - <Scalar: CGFloatConvertible> (lhs : CGFloat, rhs: Scalar) -> CGFlo
     return lhs - CGFloat(rhs)
 }
 
-public func -= <Scalar: CGFloatConvertible> (inout lhs : CGFloat, rhs: Scalar)
+public func -= <Scalar: CGFloatConvertible> (lhs : inout CGFloat, rhs: Scalar)
 {
     lhs -= CGFloat(rhs)
 }
@@ -60,7 +60,7 @@ public func * <Scalar: CGFloatConvertible> (lhs : CGFloat, rhs: Scalar) -> CGFlo
     return lhs * CGFloat(rhs)
 }
 
-public func *= <Scalar: CGFloatConvertible> (inout lhs : CGFloat, rhs: Scalar)
+public func *= <Scalar: CGFloatConvertible> (lhs : inout CGFloat, rhs: Scalar)
 {
     lhs *= CGFloat(rhs)
 }
@@ -70,7 +70,7 @@ public func / <Scalar: CGFloatConvertible> (lhs : CGFloat, rhs: Scalar) -> CGFlo
     return lhs / CGFloat(rhs)
 }
 
-public func /= <Scalar: CGFloatConvertible> (inout lhs : CGFloat, rhs: Scalar)
+public func /= <Scalar: CGFloatConvertible> (lhs : inout CGFloat, rhs: Scalar)
 {
     lhs /= CGFloat(rhs)
 }

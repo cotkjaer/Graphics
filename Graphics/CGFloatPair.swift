@@ -60,7 +60,7 @@ public func + <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, rhs: T2) -> T1
     return T1(lhs[0] + rhs[0], lhs[1] + rhs[1])
 }
 
-public func += <T1: CGFloatPair, T2: CGFloatPair>(inout lhs: T1, rhs: T2)
+public func += <T1: CGFloatPair, T2: CGFloatPair>(lhs: inout T1, rhs: T2)
 {
     lhs = lhs + rhs
 }
@@ -77,7 +77,7 @@ public func - <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, rhs: T2) -> T1
     return T1(lhs[0] - rhs[0], lhs[1] - rhs[1])
 }
 
-public func -= <T1: CGFloatPair, T2: CGFloatPair>(inout lhs: T1, rhs: T2)
+public func -= <T1: CGFloatPair, T2: CGFloatPair>(lhs: inout T1, rhs: T2)
 {
     lhs = lhs - rhs
 }
@@ -99,12 +99,12 @@ public func * <T: CGFloatPair, S: CGFloatConvertible>(lhs: S, rhs: T) -> T
     return rhs * lhs
 }
 
-public func *= <T1: CGFloatPair, T2: CGFloatPair>(inout lhs: T1, rhs: T2)
+public func *= <T1: CGFloatPair, T2: CGFloatPair>(lhs: inout T1, rhs: T2)
 {
     lhs = lhs * rhs
 }
 
-public func *= <T: CGFloatPair, S: CGFloatConvertible>(inout lhs: T, rhs: S)
+public func *= <T: CGFloatPair, S: CGFloatConvertible>(lhs: inout T, rhs: S)
 {
     lhs = lhs * rhs
 }
@@ -121,12 +121,12 @@ public func / <T: CGFloatPair, S: CGFloatConvertible>(lhs: T, rhs: S) -> T
     return T(lhs[0] / rhs, lhs[1] / rhs)
 }
 
-public func /= <T1: CGFloatPair, T2: CGFloatPair>(inout lhs: T1, rhs: T2)
+public func /= <T1: CGFloatPair, T2: CGFloatPair>(lhs: inout T1, rhs: T2)
 {
     lhs = lhs / rhs
 }
 
-public func /= <T: CGFloatPair, S: CGFloatConvertible>(inout lhs: T, rhs: S)
+public func /= <T: CGFloatPair, S: CGFloatConvertible>(lhs: inout T, rhs: S)
 {
     lhs = lhs / rhs
 }
@@ -140,7 +140,7 @@ extension CGFloatPair
      
      - parameter number: the number to use in rounding
      */
-    public func rounded(toNearest toNearest: Self) -> Self
+    public func rounded(toNearest: Self) -> Self
     {
         return Self(self[0].rounded(toNearest: toNearest[0]), self[1].rounded(toNearest: toNearest[1]))
     }
@@ -176,21 +176,21 @@ extension CGFloatPair
 
 // MARK: - ceil
 
-public func ceil<T: CGFloatPair>(t: T) -> T
+public func ceil<T: CGFloatPair>(_ t: T) -> T
 {
     return T(t[0].ceil, t[1].ceil)
 }
 
 // MARK: - floor
 
-public func floor<T: CGFloatPair>(t: T) -> T
+public func floor<T: CGFloatPair>(_ t: T) -> T
 {
     return T(t[0].floor, t[1].floor)
 }
 
 //MARK: - Round
 
-public func round<T: CGFloatPair>(t: T, toDecimals: Int = 0) -> T
+public func round<T: CGFloatPair>(_ t: T, toDecimals: Int = 0) -> T
 {
     return T(round(t[0], toDecimals: toDecimals), round(t[1], toDecimals: toDecimals))
 }
@@ -206,28 +206,28 @@ public func ◊ <T: CGFloatPair, S: CGFloatConvertible> (ab: (T, T), t: S) -> T
 // MARK: - Dot
 
 /// this is U+22C5 not U+00B7 (middle dot)
-infix operator ⋅ { associativity left precedence 160 }
+infix operator ⋅ : MultiplicationPrecedence //{ associativity left precedence 160 }
 
 public func ⋅ <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, rhs: T2) -> CGFloat
 {
     return lhs[0] * rhs[0] + lhs[1] * rhs[1]
 }
 
-public func dot <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, _ rhs: T2) -> CGFloat
+public func dot <T1: CGFloatPair, T2: CGFloatPair>(_ lhs: T1, _ rhs: T2) -> CGFloat
 {
     return lhs ⋅ rhs
 }
 
 // MARK: - Cross
 
-infix operator × { associativity left precedence 160 }
+infix operator × : MultiplicationPrecedence //{ associativity left precedence 160 }
 
 public func × <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, rhs: T2) -> CGFloat
 {
     return lhs[0] * rhs[1] - lhs[1] * rhs[0]
 }
 
-public func cross <T1: CGFloatPair, T2: CGFloatPair>(lhs: T1, _ rhs: T2) -> CGFloat
+public func cross <T1: CGFloatPair, T2: CGFloatPair>(_ lhs: T1, _ rhs: T2) -> CGFloat
 {
     return lhs × rhs
 }
@@ -238,7 +238,7 @@ extension CGFloatPair
 {
     // MARK: map
     
-    func map<Scalar: CGFloatConvertible>(transform: CGFloat -> Scalar) -> Self
+    func map<Scalar: CGFloatConvertible>(_ transform: (CGFloat) -> Scalar) -> Self
     {
         return Self(transform(self[0]), transform(self[1]))
     }
@@ -248,7 +248,7 @@ extension CGFloatPair
 
 extension CGFloatPair
 {
-    public func equalTo(other: Self, within precision: Self) -> Bool
+    public func equalTo(_ other: Self, within precision: Self) -> Bool
     {
         return (self - other).norm < precision.norm
     }

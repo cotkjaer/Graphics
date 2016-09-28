@@ -30,22 +30,22 @@ public enum Alignment
 
 public enum Align
 {
-    case Middle, Min, Max, Custom(CGFloat)
+    case middle, min, max, custom(CGFloat)
     
     var value : CGFloat
         {
             switch self
             {
-            case .Max:
+            case .max:
                 return 1
                 
-            case .Middle:
+            case .middle:
                 return 0.5
                 
-            case .Min:
+            case .min:
                 return 0
                 
-            case .Custom(let f):
+            case .custom(let f):
                 return f
             }
     }
@@ -80,12 +80,12 @@ public struct Percent
 
 extension CGRect
 {
-    public mutating func scaleAndAlignToRect(rect: CGRect, scaling: Scaling, horizontal: Align = Align.Middle, vertical: Align = Align.Middle)
+    public mutating func scaleAndAlignToRect(_ rect: CGRect, scaling: Scaling, horizontal: Align = Align.middle, vertical: Align = Align.middle)
     {
         self = scaledAndAlignedToRect(rect, scaling: scaling, horizontal: horizontal, vertical: vertical)
     }
     
-    public func scaledAndAlignedToRect(rect: CGRect, scaling: Scaling, horizontal: Align = Align.Middle, vertical: Align = Align.Middle) -> CGRect
+    public func scaledAndAlignedToRect(_ rect: CGRect, scaling: Scaling, horizontal: Align = Align.middle, vertical: Align = Align.middle) -> CGRect
     {
         var result = CGRect()
         var scaledSize = size

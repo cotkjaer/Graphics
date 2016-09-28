@@ -31,7 +31,7 @@ extension CGSize : CGFloatPair
                 height = newValue
                 
             default:
-                debugPrint("index (\(index)) out of bounds for \(self.dynamicType)")
+                debugPrint("index (\(index)) out of bounds for \(type(of: self))")
             }
         }
         get
@@ -45,7 +45,7 @@ extension CGSize : CGFloatPair
                 return height
                 
             default:
-                debugPrint("index (\(index)) out of bounds for \(self.dynamicType)")
+                debugPrint("index (\(index)) out of bounds for \(type(of: self))")
                 return 0
             }
         }
@@ -56,13 +56,13 @@ extension CGSize : CGFloatPair
 
 extension CGSize
 {
-    public func with(width width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize
+    public func with(width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize
     {
         return CGSize(width: width ?? self.width, height: height ?? self.height)
     }
     
     ///Returns *true* if `size` fits inside `self`
-    public func fits(size: CGSize) -> Bool
+    public func fits(_ size: CGSize) -> Bool
     {
         return width >= size.width && height >= size.height
     }
@@ -72,17 +72,17 @@ extension CGSize
 
 extension CGSize
 {
-    public static var zero : CGSize { return CGSizeZero }
+//    public static var zero : CGSize { return CGSize.zero }
 }
 
 // MARK: - Transform
 
 public func * (size: CGSize, transform: CGAffineTransform) -> CGSize
 {
-    return CGSizeApplyAffineTransform(size, transform)
+    return size.applying(transform)
 }
 
-public func *= (inout size: CGSize, transform: CGAffineTransform)
+public func *= (size: inout CGSize, transform: CGAffineTransform)
 {
     size = size * transform
 }

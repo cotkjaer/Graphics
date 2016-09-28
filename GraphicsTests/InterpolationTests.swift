@@ -22,7 +22,7 @@ class InterpolationTests: XCTestCase
     
     func test_CGPoint()
     {
-        let p1 = CGPointZero
+        let p1 = CGPoint.zero
         let p2 = CGPoint(x: 1, y: 10)
         
         XCTAssertEqual((p1, p2) ◊ 0.5, CGPoint(x: 0.5, y: 5))
@@ -30,6 +30,7 @@ class InterpolationTests: XCTestCase
 
     func test_CGSize()
     {
+        let _ = CGSize.zero
         let s1 = CGSize()
         let s2 = CGSize(width: 1, height: 10)
         
@@ -38,7 +39,7 @@ class InterpolationTests: XCTestCase
 
     func test_CGRect()
     {
-        let p1 = CGRectZero
+        let p1 = CGRect.zero
         let p2 = CGRect(origin:CGPoint(x: 1, y: 10), size: CGSize(width: 1, height: 10))
         
         XCTAssertEqual((p1, p2) ◊ 0.9, CGRect(origin: CGPoint(x: 0.9, y: 9), size: CGSize(width: 0.9, height: 9)))
