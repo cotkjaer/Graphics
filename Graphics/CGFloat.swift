@@ -61,7 +61,7 @@ extension CGFloat
             
         #elseif arch(arm) || arch(i386)
             
-            assert(sizeof(Float) == sizeof(CGFloat))
+            assert(MemoryLayout<Float>.size == MemoryLayout<CGFloat>.size)
             return CGFloat(FLT_EPSILON)
             
         #endif
