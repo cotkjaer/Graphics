@@ -29,11 +29,11 @@ extension CGColor: CustomStringConvertible, CustomDebugStringConvertible
 
 public extension CGColor
 {
-    public var alpha: CGFloat { return self.alpha }
-    
-    public func withAlpha(_ alpha: CGFloat) -> CGColor
+    public func with(alpha: CGFloat) -> CGColor
     {
-        return self.copy(alpha: alpha)!
+        guard let c = copy(alpha: alpha) else { return CGColor.clear }
+        
+        return c
     }
 }
 
@@ -69,9 +69,11 @@ public extension CGColor
     var colorSpace: CGColorSpace { return self.colorSpace }
     
     public static let black = UIColor.black.cgColor
+    public static let white = UIColor.white.cgColor
+    public static let clear = UIColor.clear.cgColor
+
     public static let darkGray = UIColor.darkGray.cgColor
     public static let lightGray = UIColor.lightGray.cgColor
-    public static let white = UIColor.white.cgColor
     public static let gray = UIColor.gray.cgColor
     public static let red = UIColor.red.cgColor
     public static let green = UIColor.green.cgColor
@@ -81,5 +83,4 @@ public extension CGColor
     public static let orange = UIColor.orange.cgColor
     public static let purple = UIColor.purple.cgColor
     public static let brown = UIColor.brown.cgColor
-    public static let clear = UIColor.clear.cgColor
 }
