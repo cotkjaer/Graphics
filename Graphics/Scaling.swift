@@ -80,12 +80,12 @@ public struct Percent
 
 extension CGRect
 {
-    public mutating func scaleAndAlignToRect(_ rect: CGRect, scaling: Scaling, horizontal: Align = Align.middle, vertical: Align = Align.middle)
+    public mutating func scaleAndAlign(toRect rect: CGRect, scaling: Scaling, horizontal: Align = Align.middle, vertical: Align = Align.middle)
     {
-        self = scaledAndAlignedToRect(rect, scaling: scaling, horizontal: horizontal, vertical: vertical)
+        self = scaledAndAligned(toRect: rect, scaling: scaling, horizontal: horizontal, vertical: vertical)
     }
     
-    public func scaledAndAlignedToRect(_ rect: CGRect, scaling: Scaling, horizontal: Align = Align.middle, vertical: Align = Align.middle) -> CGRect
+    public func scaledAndAligned(toRect rect: CGRect, scaling: Scaling, horizontal: Align = Align.middle, vertical: Align = Align.middle) -> CGRect
     {
         var result = CGRect()
         var scaledSize = size

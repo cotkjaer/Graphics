@@ -40,11 +40,11 @@ public extension CGRect
         set { centerX = newValue.x; centerY = newValue.y }
     }
     
-    // MARK: private center
-    
+    // MARK: private center - settable midX and midY
+  
     fileprivate var centerX: CGFloat
         {
-        get { return x + width * 0.5 }
+        get { return x + width * 0.5}
         set { x = newValue - width * 0.5 }
     }
     
@@ -52,6 +52,32 @@ public extension CGRect
         {
         get { return y + height * 0.5 }
         set { y = newValue - height * 0.5 }
+    }
+    
+    // MARK: - Centered Square
+    
+    /// A square that has the same center as this rectangle and side-length = min(width, height)
+    public var innerSquare : CGRect
+    {
+        return CGRect(center: center, size: CGSize(side: min(width, height)))
+    }
+    
+    
+    /// Returns a square that either fits inside this rectangle (if `inner` is *true*) or that this rectagle fits into (if `inner` is *false*)
+    /// - parameter horizontal: Horizontal Alignment (default is `middle`)
+    /// - parameter vertical: Vertical Alignment (default is `middle`)
+    /// - parameter inner: flag to determine
+
+    public func squared(horizontal: Align = .middle, vertical: Align = .middle, inner: Bool = true) -> CGRect
+    {
+        let side = inner ? min(width, height) : max(width, height)
+        
+        let x = minX + (width - side) * horizontal.value
+        let y = minX + (height - side) * vertical.value
+        
+        let rect = CGRect(origin: CGPoint(x: x, y: y), size: CGSize(side: side))
+        
+        return rect
     }
 }
 

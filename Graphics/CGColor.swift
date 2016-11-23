@@ -66,8 +66,6 @@ public extension CGColor
 
 public extension CGColor
 {
-    var colorSpace: CGColorSpace { return self.colorSpace }
-    
     public static let black = UIColor.black.cgColor
     public static let white = UIColor.white.cgColor
     public static let clear = UIColor.clear.cgColor

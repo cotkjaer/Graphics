@@ -9,6 +9,14 @@
 import CoreGraphics
 import Arithmetic
 
+extension CGSize
+{
+    public init<S:CGFloatConvertible>(side: S)
+    {
+        self.init(side, side)
+    }
+}
+
 // MARK: - CGFloatPair
 
 extension CGSize : CGFloatPair
