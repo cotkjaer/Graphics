@@ -196,12 +196,12 @@ extension CGPoint
 {
     // MARK: distance
     
-    func distance(to point: CGPoint) -> CGFloat
+    public func distance(to point: CGPoint) -> CGFloat
     {
         return CoreGraphics.sqrt(distanceSquared(to: point))
     }
     
-    func distanceSquared(to point: CGPoint) -> CGFloat
+    public func distanceSquared(to point: CGPoint) -> CGFloat
     {
         return pow(x - point.x, 2) + pow(y - point.y, 2)
     }
