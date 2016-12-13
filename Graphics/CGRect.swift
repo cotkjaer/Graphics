@@ -55,6 +55,15 @@ public extension CGRect
         set { y = newValue - height * 0.5 }
     }
     
+    // MARK: - Corners
+    
+    /// The corners of the rectangle - from the origin and clockwise
+    var corners : [CGPoint]
+    { return [ CGPoint(x: minX, y: minY),
+          CGPoint(x: maxX, y: minY),
+          CGPoint(x: maxX, y: maxY),
+          CGPoint(x: minX, y: maxY)] }
+    
     // MARK: - Centered Square
     
     /// A square that has the same center as this rectangle and side-length = min(width, height)
@@ -62,7 +71,6 @@ public extension CGRect
     {
         return CGRect(center: center, size: CGSize(side: min(width, height)))
     }
-    
     
     /// Returns a square that either fits inside this rectangle (if `inner` is *true*) or that this rectagle fits into (if `inner` is *false*)
     /// - parameter horizontal: Horizontal Alignment (default is `middle`)

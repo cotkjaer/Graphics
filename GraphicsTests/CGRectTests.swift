@@ -25,6 +25,19 @@ class CGRectTests: XCTestCase
         XCTAssertEqual(CGRect(origin: p2, size: s2).center, CGPoint(x: 6.5, y: 56))
     }
     
+    func test_corners()
+    {
+        let r = CGRect(x: 10, y: -2, width: 10, height: 1)
+        
+        XCTAssertEqual(r.corners.count, 4)
+        XCTAssertEqual(r.corners[0], r.origin)
+        XCTAssertEqual(r.corners[1], CGPoint(x: 20, y: -2))
+        XCTAssertEqual(r.corners[2], CGPoint(x: 20, y: -1))
+        XCTAssertEqual(r.corners[3], CGPoint(x: 10, y: -1))
+        
+        XCTAssertEqual(CGRect.null.corners.count, 4)
+    }
+    
     func test_innerSquare()
     {
         XCTAssertEqual(CGRect.zero.innerSquare, .zero)
