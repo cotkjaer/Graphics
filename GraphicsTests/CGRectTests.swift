@@ -43,8 +43,5 @@ class CGRectTests: XCTestCase
         XCTAssertEqual(CGRect.zero.innerSquare, .zero)
         XCTAssertEqual(CGRect(origin: .zero, size: s1).innerSquare, CGRect(origin: .zero, size: s1))
         XCTAssertEqual(CGRect(center: p2, size: s2).innerSquare, CGRect(center: p2, size: CGSize(side: 1)))
-        
-        
     }
-    
 }
