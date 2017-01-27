@@ -216,3 +216,11 @@ public func distanceSquared(_ lhs: CGPoint, _ rhs: CGPoint) -> CGFloat
 {
     return pow(lhs.x - rhs.x, 2) + pow(lhs.y - rhs.y, 2)
 }
+
+// MARK: - Infinity
+
+extension CGPoint
+{
+    static let infinity = CGPoint(x: CGFloat.infinity, y: CGFloat.infinity)
+}
+

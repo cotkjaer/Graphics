@@ -35,14 +35,14 @@ public extension CGRect
         self.init(x : center.x - size.width / 2, y : center.y - size.height / 2, width: size.width, height: size.height)
     }
     
-    var center: CGPoint
+    public var center: CGPoint
         {
         get { return CGPoint(x: centerX, y: centerY) }
         set { centerX = newValue.x; centerY = newValue.y }
     }
     
     // MARK: private center - settable midX and midY
-  
+    
     fileprivate var centerX: CGFloat
         {
         get { return x + width * 0.5}
@@ -60,9 +60,9 @@ public extension CGRect
     /// The corners of the rectangle - from the origin and clockwise
     var corners : [CGPoint]
     { return [ CGPoint(x: minX, y: minY),
-          CGPoint(x: maxX, y: minY),
-          CGPoint(x: maxX, y: maxY),
-          CGPoint(x: minX, y: maxY)] }
+               CGPoint(x: maxX, y: minY),
+               CGPoint(x: maxX, y: maxY),
+               CGPoint(x: minX, y: maxY)] }
     
     // MARK: - Centered Square
     
@@ -72,11 +72,13 @@ public extension CGRect
         return CGRect(center: center, size: CGSize(side: min(width, height)))
     }
     
+    var isSquare : Bool { return width == height }
+    
     /// Returns a square that either fits inside this rectangle (if `inner` is *true*) or that this rectagle fits into (if `inner` is *false*)
     /// - parameter horizontal: Horizontal Alignment (default is `middle`)
     /// - parameter vertical: Vertical Alignment (default is `middle`)
     /// - parameter inner: flag to determine
-
+    
     public func squared(horizontal: Align = .middle, vertical: Align = .middle, inner: Bool = true) -> CGRect
     {
         let side = inner ? min(width, height) : max(width, height)

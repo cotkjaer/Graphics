@@ -88,4 +88,43 @@ public func *= (size: inout CGSize, transform: CGAffineTransform)
     size = size * transform
 }
 
+// MARK: - inset
+
+extension CGSize
+{
+    public func inset(by insets: UIEdgeInsets?) -> CGSize
+    {
+        var s = CGSize(width: width, height: height)
+        
+        s.inset(insets)
+        
+        return s
+    }
+    
+    public mutating func inset(_ insets: UIEdgeInsets?)
+    {
+        guard let insets = insets else { return }
+        
+        width -= insets.left + insets.right
+        height -= insets.top + insets.bottom
+    }
+    
+    public mutating func square(inner: Bool = true)
+    {
+        self = inner ? innerSquare : outerSquare
+    }
+    
+    public var outerSquare: CGSize
+        {
+        let m = max(width, height)
+        return CGSize(width: m, height: m)
+    }
+    
+    public var innerSquare: CGSize
+    {
+        let m = min(width, height)
+        return CGSize(width: m, height: m)
+    }
+
+}
 
