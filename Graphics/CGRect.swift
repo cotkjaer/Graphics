@@ -8,8 +8,6 @@
 
 import UIKit
 
-import Arithmetic
-
 // MARK: - convenience initializers
 
 public extension CGRect
@@ -22,73 +20,6 @@ public extension CGRect
     public init(origin: CGPoint)
     {
         self.init(origin: origin, size: CGSize.zero)
-    }
-}
-
-// MARK: - center
-
-public extension CGRect
-{
-    /// Initialize with a given center and size
-    public init(center: CGPoint, size: CGSize)
-    {
-        self.init(x : center.x - size.width / 2, y : center.y - size.height / 2, width: size.width, height: size.height)
-    }
-    
-    public var center: CGPoint
-        {
-        get { return CGPoint(x: centerX, y: centerY) }
-        set { centerX = newValue.x; centerY = newValue.y }
-    }
-    
-    // MARK: private center - settable midX and midY
-    
-    fileprivate var centerX: CGFloat
-        {
-        get { return x + width * 0.5}
-        set { x = newValue - width * 0.5 }
-    }
-    
-    fileprivate var centerY: CGFloat
-        {
-        get { return y + height * 0.5 }
-        set { y = newValue - height * 0.5 }
-    }
-    
-    // MARK: - Corners
-    
-    /// The corners of the rectangle - from the origin and clockwise
-    var corners : [CGPoint]
-    { return [ CGPoint(x: minX, y: minY),
-               CGPoint(x: maxX, y: minY),
-               CGPoint(x: maxX, y: maxY),
-               CGPoint(x: minX, y: maxY)] }
-    
-    // MARK: - Centered Square
-    
-    /// A square that has the same center as this rectangle and side-length = min(width, height)
-    public var innerSquare : CGRect
-    {
-        return CGRect(center: center, size: CGSize(side: min(width, height)))
-    }
-    
-    var isSquare : Bool { return width == height }
-    
-    /// Returns a square that either fits inside this rectangle (if `inner` is *true*) or that this rectagle fits into (if `inner` is *false*)
-    /// - parameter horizontal: Horizontal Alignment (default is `middle`)
-    /// - parameter vertical: Vertical Alignment (default is `middle`)
-    /// - parameter inner: flag to determine
-    
-    public func squared(horizontal: Align = .middle, vertical: Align = .middle, inner: Bool = true) -> CGRect
-    {
-        let side = inner ? min(width, height) : max(width, height)
-        
-        let x = minX + (width - side) * horizontal.value
-        let y = minX + (height - side) * vertical.value
-        
-        let rect = CGRect(origin: CGPoint(x: x, y: y), size: CGSize(side: side))
-        
-        return rect
     }
 }
 
@@ -251,10 +182,6 @@ public extension CGRect
     }
 }
 
-//MARK: - Zero
-
-extension CGRect : Zeroable {}
-
 // MARK: - Edge points
 
 public extension CGRect
@@ -322,8 +249,8 @@ extension CGRect
 
 extension CGRect
 {
-    public var minWidthHeight : CGFloat { return size.minimum }
-    public var maxWidthHeight : CGFloat { return size.maximum }
+    public var minWidthHeight: CGFloat { return size.minimum }
+    public var maxWidthHeight: CGFloat { return size.maximum }
 }
 
 // MARK: - Relative position
@@ -418,10 +345,4 @@ public func *= (rect: inout CGRect, transform: CGAffineTransform)
     rect = rect * transform
 }
 
-// MARK: - LERP
 
-/// Basic linear interpolation of two points
-public func ◊ (ab: (CGRect, CGRect), t: CGFloat) -> CGRect
-{
-    return CGRect(origin: (ab.0.origin, ab.1.origin) ◊ t, size: (ab.0.size, ab.1.size) ◊ t)
-}

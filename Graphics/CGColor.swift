@@ -14,7 +14,7 @@ import UIKit
 
 extension CGColor
 {
-    public var uiColor : UIColor { return UIColor(cgColor: self) }
+    public var uiColor: UIColor { return UIColor(cgColor: self) }
 }
 
 // MARK: - CustomStringConvertible, CustomDebugStringConvertible

@@ -7,13 +7,13 @@
 //
 
 import CoreGraphics
-import Arithmetic
+//import Arithmetic
 
 // MARK: - CGFloatPair
 
-extension CGVector : CGFloatPair
+extension CGVector: CGFloatPair
 {
-    public init<S1 : CGFloatConvertible, S2 : CGFloatConvertible>(_ x: S1, _ y: S2)
+    public init<S1: CGFloatConvertible, S2: CGFloatConvertible>(_ x: S1, _ y: S2)
     {
         self.init(dx: CGFloat(x), dy: CGFloat(y))
     }
@@ -51,7 +51,7 @@ extension CGVector : CGFloatPair
         }
     }
     
-    public var norm : CGFloat { return magnitude }
+    public var norm: CGFloat { return magnitude }
 }
 
 extension CGVector
@@ -123,25 +123,18 @@ public extension CGVector
         return CGVector(magnitude: magnitude, direction: direction)
     }
     
-    var normalized: CGVector
-        {
-            let magnitude = self.magnitude
-            
-            if magnitude < CGFloat.epsilon
-            {
-                return self
-            }
-            else
-            {
-                return self / magnitude
-            }
+    public func normalized() -> CGVector
+    {
+        guard abs(magnitude) > CGFloat.ulpOfOne else { return CGVector.zero }
+        
+        return with(magnitude: 1)
     }
     
     // MARK: - normalizing
     
     public mutating func normalize()
     {
-        self = normalized
+        self = normalized()
     }
 }
 
@@ -166,9 +159,9 @@ public extension CGVector
     var transposed: CGVector { return CGVector(dx: dy, dy: dx) }
     
     /// returns: vector from rotation this by 90 degrees either clockwise or counterclockwise
-    func perpendicular(clockwise : Bool = true) -> CGVector
+    func perpendicular(clockwise: Bool = true) -> CGVector
     {
-        return clockwise ? CGVector(dx: dy, dy: -dx) : CGVector(dx: -dy, dy: dx)
+        return clockwise ? CGVector(dx: dy, dy: -dx): CGVector(dx: -dy, dy: dx)
     }
 }
 
@@ -200,7 +193,7 @@ extension CGVector//: Equatable
     }
 }
 
-func isEqual(_ vector1: CGVector, vector2: CGVector, precision: CGFloat = CGFloat.epsilon) -> Bool
+func isEqual(_ vector1: CGVector, vector2: CGVector, precision: CGFloat = CGFloat.ulpOfOne) -> Bool
 {
     return (vector1 - vector2).magnitude < abs(precision)
 }
@@ -208,6 +201,7 @@ func isEqual(_ vector1: CGVector, vector2: CGVector, precision: CGFloat = CGFloa
 //MARK: - Draw
 
 import UIKit
+import Interpolation
 
 public extension CGVector
 {
@@ -217,7 +211,7 @@ public extension CGVector
         
         let l = magnitude
         
-        guard l > CGFloat.epsilon else { return }
+        guard l > CGFloat.ulpOfOne else { return }
         
         context.saveGState()
         
@@ -249,7 +243,7 @@ public extension CGVector
         
         let headStartPoint = (startPoint, toPoint) ◊ 0.9
         
-        let p = perpendicular().normalized
+        let p = perpendicular().normalized()
         
         let path = UIBezierPath()
         

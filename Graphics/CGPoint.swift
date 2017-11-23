@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Christian Otkjær. All rights reserved.
 //
 
-import Arithmetic
+//import Arithmetic
 
 // MARK: - CGFloatPair
 
-extension CGPoint : CGFloatPair
+extension CGPoint: CGFloatPair
 {
-    public init<S1 : CGFloatConvertible, S2 : CGFloatConvertible>(_ x: S1, _ y: S2)
+    public init<S1: CGFloatConvertible, S2: CGFloatConvertible>(_ x: S1, _ y: S2)
     {
         self.init(x: CGFloat(x), y: CGFloat(y))
     }
@@ -50,7 +50,7 @@ extension CGPoint : CGFloatPair
         }
     }
     
-    public var norm : CGFloat { return sqrt(x*x + y*y) }
+    public var norm: CGFloat { return sqrt(x*x + y*y) }
 }
 
 // MARK: - Map
@@ -150,28 +150,6 @@ extension CGPoint
     }
 }
 
-//// MARK: Fuzzy
-//
-//extension CGPoint: FuzzyEquatable
-//{
-//    public func equalTo(other: CGPoint, within precision: CGPoint) -> Bool
-//    {
-//        return distance(to:other) <= precision.distance(to: CGPoint.zero)
-//    }
-//}
-//
-//public func ≈≈ (lhs: CGPoint, rhs: CGPoint) -> Bool { return lhs.x ≈≈ rhs.x && lhs.y ≈≈ rhs.y }
-
-
-// MARK: - ApproximatelyEquatable
-
-extension CGPoint : ApproximatelyEquatable
-{
-    public func isEqualTo(_ point: CGPoint, withPrecision precision:CGFloat = CGFloat.epsilon) -> Bool
-    {
-        return distance(to: point) < abs(precision)
-    }
-}
 
 public func isEqual(_ lhs: CGPoint, rhs: CGPoint, withPrecision precision:CGFloat) -> Bool
 {

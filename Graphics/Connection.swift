@@ -91,7 +91,7 @@ open class Connection: CAShapeLayer
         down,
         none
         
-        var opposite : ConnectionAnchor
+        var opposite: ConnectionAnchor
             {
                 switch self
                 {
@@ -108,7 +108,7 @@ open class Connection: CAShapeLayer
                 }
         }
         
-        var angle : CGFloat?
+        var angle: CGFloat?
             {
                 switch self
                 {
@@ -132,10 +132,10 @@ open class Connection: CAShapeLayer
     open var toFrame: CGRect?
         { didSet { if oldValue != toFrame { updateConnection() } } }
     
-    open var fromAnchor : ConnectionAnchor = .none
+    open var fromAnchor: ConnectionAnchor = .none
         { didSet { if oldValue != fromAnchor { updateConnection() } } }
     
-    open var toAnchor : ConnectionAnchor = .none
+    open var toAnchor: ConnectionAnchor = .none
         { didSet { if oldValue != toAnchor { updateConnection() } } }
     
     open func updateConnection()
@@ -209,7 +209,7 @@ open class Connection: CAShapeLayer
     
     //MARK: - Animation
     
-    open var animatePath : Bool = false
+    open var animatePath: Bool = false
     
     override open func action(forKey event: String) -> CAAction?
     {

@@ -14,6 +14,6 @@ FOUNDATION_EXPORT double GraphicsVersionNumber;
 //! Project version string for Graphics.
 FOUNDATION_EXPORT const unsigned char GraphicsVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Graphics/PublicHeader.h>
+// In this header, you should //import All the public headers of your framework using statements like #import <Graphics/PublicHeader.h>
 
 

@@ -7,8 +7,9 @@
 //
 
 import XCTest
-import Arithmetic
+//import Arithmetic
 @testable import Graphics
+import Interpolation
 
 class InterpolationTests: XCTestCase
 {

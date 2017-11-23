@@ -10,67 +10,67 @@
 
 public protocol CGFloatConvertible
 {
-    init (_ : CGFloat)
+    init (_: CGFloat)
     
-    var cgFloat : CGFloat { get }
+    var cgFloat: CGFloat { get }
 }
 
-extension CGFloat : CGFloatConvertible
+extension CGFloat: CGFloatConvertible
 {
-    public var cgFloat : CGFloat { return self }
+    public var cgFloat: CGFloat { return self }
 }
 
-extension Double : CGFloatConvertible
+extension Double: CGFloatConvertible
 {
-    public var cgFloat : CGFloat { return CGFloat(self) }
+    public var cgFloat: CGFloat { return CGFloat(self) }
 }
 
-extension Float : CGFloatConvertible
+extension Float: CGFloatConvertible
 {
-    public var cgFloat : CGFloat { return CGFloat(self) }
+    public var cgFloat: CGFloat { return CGFloat(self) }
 }
 
-extension Int : CGFloatConvertible
+extension Int: CGFloatConvertible
 {
-    public var cgFloat : CGFloat { return CGFloat(self) }
+    public var cgFloat: CGFloat { return CGFloat(self) }
 }
 
-public func + <Scalar: CGFloatConvertible> (lhs : CGFloat, rhs: Scalar) -> CGFloat
+public func + <Scalar: CGFloatConvertible> (lhs: CGFloat, rhs: Scalar) -> CGFloat
 {
     return lhs + CGFloat(rhs)
 }
 
-public func += <Scalar: CGFloatConvertible> (lhs : inout CGFloat, rhs: Scalar)
+public func += <Scalar: CGFloatConvertible> (lhs: inout CGFloat, rhs: Scalar)
 {
     lhs += CGFloat(rhs)
 }
 
-public func - <Scalar: CGFloatConvertible> (lhs : CGFloat, rhs: Scalar) -> CGFloat
+public func - <Scalar: CGFloatConvertible> (lhs: CGFloat, rhs: Scalar) -> CGFloat
 {
     return lhs - CGFloat(rhs)
 }
 
-public func -= <Scalar: CGFloatConvertible> (lhs : inout CGFloat, rhs: Scalar)
+public func -= <Scalar: CGFloatConvertible> (lhs: inout CGFloat, rhs: Scalar)
 {
     lhs -= CGFloat(rhs)
 }
 
-public func * <Scalar: CGFloatConvertible> (lhs : CGFloat, rhs: Scalar) -> CGFloat
+public func * <Scalar: CGFloatConvertible> (lhs: CGFloat, rhs: Scalar) -> CGFloat
 {
     return lhs * CGFloat(rhs)
 }
 
-public func *= <Scalar: CGFloatConvertible> (lhs : inout CGFloat, rhs: Scalar)
+public func *= <Scalar: CGFloatConvertible> (lhs: inout CGFloat, rhs: Scalar)
 {
     lhs *= CGFloat(rhs)
 }
 
-public func / <Scalar: CGFloatConvertible> (lhs : CGFloat, rhs: Scalar) -> CGFloat
+public func / <Scalar: CGFloatConvertible> (lhs: CGFloat, rhs: Scalar) -> CGFloat
 {
     return lhs / CGFloat(rhs)
 }
 
-public func /= <Scalar: CGFloatConvertible> (lhs : inout CGFloat, rhs: Scalar)
+public func /= <Scalar: CGFloatConvertible> (lhs: inout CGFloat, rhs: Scalar)
 {
     lhs /= CGFloat(rhs)
 }

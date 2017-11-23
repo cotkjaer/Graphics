@@ -8,18 +8,18 @@
 
 import XCTest
 @testable import Graphics
-import Arithmetic
+import Fuzzy
 
 class GeometryTests: XCTestCase
 {
     func test_CGFloat_epsilon()
     {
-        XCTAssertGreaterThan(CGFloat.epsilon, 0)
+        XCTAssertGreaterThan(CGFloat.ulpOfOne, 0)
         
         let one = CGFloat(1)
         
-        XCTAssertGreaterThan(one + CGFloat.epsilon, one)
-        XCTAssert(one + CGFloat.epsilon * 0.5 == one)
+        XCTAssertGreaterThan(one + CGFloat.ulpOfOne, one)
+        XCTAssert(one + CGFloat.ulpOfOne * 0.5 == one)
     }
     
     func test_Equal()
@@ -38,7 +38,7 @@ class GeometryTests: XCTestCase
 
         let almostP = CGPoint(-1.001, 1.999)
         
-        XCTAssert(p.isEqualTo(almostP, withPrecision: 0.002))
+        XCTAssert(p.equals(almostP, within: CGFloat(0.002)))
         
         XCTAssert(p ≈≈ p)
         XCTAssert(p !≈ almostP)

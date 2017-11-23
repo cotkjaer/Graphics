@@ -7,8 +7,9 @@
 //
 
 import Arithmetic
+import Rounding
 
-extension CGFloat : FloatingPointArithmeticType {}
+extension CGFloat: FloatingPointArithmeticType {}
 
 // MARK: - Convertible
 
@@ -24,9 +25,8 @@ public extension CGFloat
 
 //public func ** (left: CGFloat, right: CGFloat) -> CGFloat { return left.pow(right) }
 
-extension CGFloat : Powerable
+extension CGFloat//: Powerable
 {
-    
     public func pow(_ rhs: CGFloat) -> CGFloat
     {
         return CoreGraphics.pow(self, rhs)
@@ -35,38 +35,40 @@ extension CGFloat : Powerable
 
 // MARK: - Roundable
 
-extension CGFloat
+extension CGFloat: Roundable
 {
     /// Largest integral value not greater than `self`
-    public var floor : CGFloat { return CoreGraphics.floor(self) }
+    public var floor: CGFloat { return CoreGraphics.floor(self) }
     
     /// Smallest integral value not less than `self`
-    public var ceil : CGFloat { return CoreGraphics.ceil(self) }
+    public var ceil: CGFloat { return CoreGraphics.ceil(self) }
     
     /// Nearest integral value, eaqual to, less than, or greater than `self`
-    public var round : CGFloat { return CoreGraphics.round(self) }
+    public var round: CGFloat { return CoreGraphics.round(self) }
 }
 
-// MARK: - Epsilon
-
-extension CGFloat
-{
-    /// The smallest CGFloat where `CGFloat(1) + CGFloat.epsilon != CGFloat(1)`
-    public static var epsilon : CGFloat
-    {
-        #if arch(arm64) || arch(x86_64)
-            
-            assert(MemoryLayout<Double>.size == MemoryLayout<CGFloat>.size)
-            return CGFloat(DBL_EPSILON)
-            
-        #elseif arch(arm) || arch(i386)
-            
-            assert(MemoryLayout<Float>.size == MemoryLayout<CGFloat>.size)
-            return CGFloat(FLT_EPSILON)
-            
-        #endif
-    }
-}
+//// MARK: - Epsilon
+//
+//extension CGFloat
+//{
+//    /// The smallest CGFloat where `CGFloat(1) + CGFloat.epsilon != CGFloat(1)`
+//    public static var epsilon: CGFloat
+//    {
+//        return self.ulpOfOne
+//        
+//        #if arch(arm64) || arch(x86_64)
+//            
+//            assert(MemoryLayout<Double>.size == MemoryLayout<CGFloat>.size)
+//            return CGFloat(Double.ulpOfOne)
+//            
+//        #elseif arch(arm) || arch(i386)
+//            
+//            assert(MemoryLayout<Float>.size == MemoryLayout<CGFloat>.size)
+//            return CGFloat(Float.ulpOfOne)
+//            
+//        #endif
+//    }
+//}
 
 // Constants for easy access
 

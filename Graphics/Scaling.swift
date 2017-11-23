@@ -32,7 +32,7 @@ public enum Align
 {
     case middle, min, max, custom(CGFloat)
     
-    var value : CGFloat
+    var value: CGFloat
         {
             switch self
             {

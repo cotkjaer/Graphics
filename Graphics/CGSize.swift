@@ -7,7 +7,7 @@
 //
 
 import CoreGraphics
-import Arithmetic
+//import Arithmetic
 
 extension CGSize
 {
@@ -19,9 +19,9 @@ extension CGSize
 
 // MARK: - CGFloatPair
 
-extension CGSize : CGFloatPair
+extension CGSize: CGFloatPair
 {
-    public init<S1 : CGFloatConvertible, S2 : CGFloatConvertible>(_ width: S1, _ height: S2)
+    public init<S1: CGFloatConvertible, S2: CGFloatConvertible>(_ width: S1, _ height: S2)
     {
         self.init(width: CGFloat(width), height: CGFloat(height))
     }
@@ -111,7 +111,7 @@ extension CGSize
     
     public mutating func square(inner: Bool = true)
     {
-        self = inner ? innerSquare : outerSquare
+        self = inner ? innerSquare: outerSquare
     }
     
     public var outerSquare: CGSize

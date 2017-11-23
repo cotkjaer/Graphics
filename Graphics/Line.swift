@@ -6,9 +6,7 @@
 //  Copyright © 2016 Christian Otkjær. All rights reserved.
 //
 
-import Arithmetic
-
-// MARK: - Line Segment
+import Interpolation
 
 public extension CGPoint
 {
