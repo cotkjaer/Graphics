@@ -58,14 +58,12 @@ extension CGVector
 {
     public init(point: CGPoint)
     {
-        dx = point.x
-        dy = point.y
+        self.init(dx: point.x, dy: point.y)
     }
     
-    public init(from:CGPoint, to: CGPoint)
+    public init(from: CGPoint, to: CGPoint)
     {
-        dx = to.x - from.x
-        dy = to.y - from.y
+        self.init(dx: to.x - from.x, dy: to.y - from.y)
     }
     
     public func with(dx: CGFloat) -> CGVector
@@ -83,8 +81,7 @@ public extension CGVector
 {
     init(magnitude: CGFloat, direction: CGFloat)
     {
-        dx = cos(direction) * magnitude
-        dy = sin(direction) * magnitude
+        self.init(dx: cos(direction) * magnitude, dy: sin(direction) * magnitude)
     }
     
     var magnitude: CGFloat

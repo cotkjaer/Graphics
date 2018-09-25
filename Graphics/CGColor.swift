@@ -39,12 +39,14 @@ public extension CGColor
 
 public extension CGColor
 {
-    class func color(colorSpace: CGColorSpace, components: [CGFloat]) -> CGColor
+    class func color(colorSpace: CGColorSpace, components: [CGFloat]) -> CGColor?
     {
-        return components.withUnsafeBufferPointer
-            {
-                (buffer: UnsafeBufferPointer<CGFloat>) -> CGColor! in
-                return CGColor(colorSpace: colorSpace, components: buffer.baseAddress!)
+        
+        return components.withUnsafeBufferPointer { (buffer: UnsafeBufferPointer<CGFloat>) -> CGColor? in
+            
+            guard let address = buffer.baseAddress else { return nil }
+            
+            return CGColor(colorSpace: colorSpace, components: address)
         }
     }
     
